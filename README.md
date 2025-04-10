@@ -19,3 +19,11 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
   - Professores podem lançar notas de avaliações.
   - Registro de faltas dos alunos.
   - Acompanhamento do desempenho dos alunos nas disciplinas que lecionam.
+ 
+  ## Modelo Conceitual
+  ![modelo conceitual](https://github.com/user-attachments/assets/0c7aecdd-aaa8-4a68-bbe7-3fe8ebcd0864)
+
+  ## Modelo Lógico
+  ![Modelo Lógico](https://github.com/user-attachments/assets/cf70b5fb-0cc9-4800-b121-91fefab7fc96)
+
+
