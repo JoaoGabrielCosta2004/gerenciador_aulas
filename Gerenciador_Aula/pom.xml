@@ -15,10 +15,19 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.6.13.Final</version>
+            <type>pom</type>
+        </dependency>
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.2</version>
         </dependency>
+        
     </dependencies>
 </project>
