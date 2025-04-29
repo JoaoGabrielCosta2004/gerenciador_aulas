@@ -1,12 +1,23 @@
 package org.gerenciador.model;
 
+@Entity
 public class Aula {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int quantidadeFalta;
-    private String data;
+
+    @Column(name = "data_aula")
+    private LocalDate data;
+
     private String conteudo;
+
+
     private int idProfessor;
+
     private int idAluno_aula;
+
     private  int idAula_turma;
     // faltou professor e materials que n ta expecificado
 

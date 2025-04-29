@@ -1,8 +1,14 @@
 package org.gerenciador.model;
 
+@Entity
 public class Disciplina {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String nome;
+
+
     private int idProfessor_disciplina;
 
     public Disciplina(int id, String nome) {

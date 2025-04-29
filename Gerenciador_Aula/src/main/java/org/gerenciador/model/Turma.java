@@ -1,6 +1,9 @@
 package org.gerenciador.model;
 
+@Entity
 public class Turma {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private Integer ano;

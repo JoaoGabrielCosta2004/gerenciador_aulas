@@ -1,6 +1,9 @@
 package org.gerenciador.model;
 
+@Entity
 public class Nota {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String descricao;
     private double valor;

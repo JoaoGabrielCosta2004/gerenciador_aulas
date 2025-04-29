@@ -1,10 +1,16 @@
 package org.gerenciador.model;
 
+@Entity
 public class Material {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String tipo;
     private String titulo;
     private String link;
+
+
     private int idAula;
 
     public int getId() {
