@@ -14,10 +14,11 @@
 			<!-- Database PostgreSQL-->
 			<!--
 			 -->
-			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/daw" />
-			<property name="jakarta.persistence.jdbc.user" value="daw" />
-			<property name="jakarta.persistence.jdbc.password" value="daw" />
+			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://ep-restless-grass-a5rf26jr-pooler.us-east-2.aws.neon.tech:5432/neondb"/>
+			<property name="jakarta.persistence.jdbc.user" value="neondb_owner"/>
+			<property name="jakarta.persistence.jdbc.password" value="npg_MXnT53jBrqbl"/>
+
 			<!-- /Database PostgreSQL-->
 
 			<!-- HIBERNATE -->
