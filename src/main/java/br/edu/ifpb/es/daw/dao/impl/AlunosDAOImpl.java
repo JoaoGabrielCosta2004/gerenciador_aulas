@@ -1,10 +1,12 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
-import br.edu.ifpb.es.daw.dao.AlunosDAO;
+import br.edu.ifpb.es.daw.dao.AlunoDAO;
+import br.edu.ifpb.es.daw.entities.Aluno;
 import jakarta.persistence.EntityManagerFactory;
 
-public class AlunosDAOImpl extends AbstractDAOImpl<Alunos, Long> implements AlunosDAO {
+
+public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements AlunoDAO {
     public AulaDAOImpl(EntityManagerFactory emf) {
-        super(Alunos.class, emf);
+        super(Aluno.class, emf);
     }
 }

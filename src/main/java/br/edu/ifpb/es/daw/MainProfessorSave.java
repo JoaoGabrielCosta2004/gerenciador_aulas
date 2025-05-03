@@ -2,6 +2,7 @@ package br.edu.ifpb.es.daw;
 
 import br.edu.ifpb.es.daw.dao.ProfessorDAO;
 import br.edu.ifpb.es.daw.dao.impl.ProfessorDAOImpl;
+import br.edu.ifpb.es.daw.entities.Professor;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
