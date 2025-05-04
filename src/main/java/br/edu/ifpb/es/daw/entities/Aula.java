@@ -1,9 +1,9 @@
 package br.edu.ifpb.es.daw.entities;
 
-
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Aula {
@@ -13,11 +13,9 @@ public class Aula {
 
     private int quantidadeFalta;
 
-    @Column(name = "data_aula")
     private LocalDate data;
 
     private String conteudo;
-
 
     public String getConteudo() {
         return conteudo;
@@ -32,7 +30,8 @@ public class Aula {
     }
 
     public void setData(String data) {
-        this.data = LocalDate.parse(data);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.data = LocalDate.parse(data, formatter);
     }
 
     public int getId() {
@@ -42,7 +41,6 @@ public class Aula {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public int getQuantidadeFalta() {
         return quantidadeFalta;
