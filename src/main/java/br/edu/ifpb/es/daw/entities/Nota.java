@@ -11,6 +11,9 @@ public class Nota {
     private String descricao;
     private double valor;
 
+    public Nota(){
+
+    }
     public Nota(int id, String descricao, double valor) {
         this.id = id;
         this.descricao = descricao;

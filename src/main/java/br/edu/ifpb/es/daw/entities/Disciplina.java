@@ -12,7 +12,9 @@ public class Disciplina {
 
     private String nome;
 
+    public Disciplina(){
 
+    }
     public Disciplina(int id, String nome) {
         this.id = id;
         this.nome = nome;
