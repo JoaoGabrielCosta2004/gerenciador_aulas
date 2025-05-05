@@ -12,11 +12,12 @@ public class Disciplina {
 
     private String nome;
 
-
+    public Disciplina(){
+    }
+  
     public Disciplina(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-
     }
 
     public Long getId() { return id; }

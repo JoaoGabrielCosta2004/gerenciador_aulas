@@ -10,6 +10,8 @@ public class Turma {
     private String nome;
     private Integer ano;
 
+    public Turma(){
+    }
 
     public Turma(Long id, String nome, Integer ano) {
         this.id = id;

@@ -10,12 +10,15 @@ public class Nota {
     private Long id;
     private String descricao;
     private double valor;
+  
+    public Nota(){
+
+    }
 
     public Nota(Long id, String descricao, double valor) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
-
     }
 
     public Long getId() { return id; }
