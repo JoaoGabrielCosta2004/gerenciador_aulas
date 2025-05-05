@@ -8,24 +8,23 @@ import jakarta.persistence.*;
 public class Disciplina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String nome;
 
     public Disciplina(){
-
     }
-    public Disciplina(int id, String nome) {
+  
+    public Disciplina(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-
     }
 
-    public int getId() { return id; }
+    public Long getId() { return id; }
     public String getNome() { return nome; }
 
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setNome(String nome) { this.nome = nome; }
 
 

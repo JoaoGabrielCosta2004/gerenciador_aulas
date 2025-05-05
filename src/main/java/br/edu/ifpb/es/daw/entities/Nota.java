@@ -7,26 +7,26 @@ import jakarta.persistence.*;
 public class Nota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String descricao;
     private double valor;
-
+  
     public Nota(){
 
     }
-    public Nota(int id, String descricao, double valor) {
+
+    public Nota(Long id, String descricao, double valor) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
-
     }
 
-    public int getId() { return id; }
+    public Long getId() { return id; }
     public String getDescricao() { return descricao; }
     public double getValor() { return valor; }
 
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
     public void setValor(double valor) { this.valor = valor; }
 

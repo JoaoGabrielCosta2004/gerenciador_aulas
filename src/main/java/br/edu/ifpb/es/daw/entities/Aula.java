@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Aula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private int quantidadeFalta;
 
@@ -34,11 +34,11 @@ public class Aula {
         this.data = LocalDate.parse(data, formatter);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

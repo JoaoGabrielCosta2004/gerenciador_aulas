@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nome;
 
     @Column(unique = true)
@@ -14,7 +14,7 @@ public class Professor {
     private String senha;
 
     // Construtor com parâmetros
-    public Professor(int id, String nome, String email, String senha) {
+    public Professor(Long id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -25,12 +25,12 @@ public class Professor {
     public Professor() {
     }
 
-    public int getId() { return id; }
+    public Long getId() { return id; }
     public String getNome() { return nome; }
     public String getEmail() { return email; }
     public String getSenha() { return senha; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setNome(String nome) { this.nome = nome; }
     public void setEmail(String email) { this.email = email; }
     public void setSenha(String senha) { this.senha = senha; }
