@@ -9,7 +9,7 @@ public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String nome;
     private String matricula;
@@ -21,7 +21,7 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(int id, String nome, String matricula, LocalDate dataNascimento) {
+    public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
@@ -30,11 +30,11 @@ public class Aluno {
     }
 
     // Getters e Setters
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
