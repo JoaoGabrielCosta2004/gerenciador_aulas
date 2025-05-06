@@ -16,7 +16,7 @@ public class MainAlunoSave {
 
             aluno.setNome("Julia Xavier Slva");
             aluno.setDataNascimento(LocalDate.of(2015, 1,1));
-            aluno.setMatricula("20250510");
+            aluno.setMatricula(System.nanoTime() + "20250510");
 
             System.out.println("Aluno salvo com sucesso!");
 

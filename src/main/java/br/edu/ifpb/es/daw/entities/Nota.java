@@ -9,13 +9,13 @@ public class Nota {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descricao;
-    private double valor;
+    private Double valor;
   
     public Nota(){
 
     }
 
-    public Nota(Long id, String descricao, double valor) {
+    public Nota(Long id, String descricao, Double valor) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
@@ -23,12 +23,12 @@ public class Nota {
 
     public Long getId() { return id; }
     public String getDescricao() { return descricao; }
-    public double getValor() { return valor; }
+    public Double getValor() { return valor; }
 
 
     public void setId(Long id) { this.id = id; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
-    public void setValor(double valor) { this.valor = valor; }
+    public void setValor(Double valor) { this.valor = valor; }
 
 
     @Override

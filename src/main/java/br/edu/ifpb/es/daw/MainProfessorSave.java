@@ -13,7 +13,7 @@ public class MainProfessorSave {
             Professor professor = new Professor();
 
             professor.setNome("João da Silva");
-            professor.setEmail("joao.silva@exemplo.com");
+            professor.setEmail(System.nanoTime() + "joao.silva@exemplo.com");
             professor.setSenha("senhaSegura123");
 
             System.out.println("Professor salvo com sucesso!");

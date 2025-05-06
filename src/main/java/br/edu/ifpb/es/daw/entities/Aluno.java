@@ -12,6 +12,7 @@ public class Aluno {
     private Long id;
 
     private String nome;
+    @Column(unique = true)
     private String matricula;
 
     @Column(name = "data_nascimento")

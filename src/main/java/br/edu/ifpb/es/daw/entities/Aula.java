@@ -11,7 +11,7 @@ public class Aula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int quantidadeFalta;
+    private Integer quantidadeFalta;
 
     private LocalDate data;
 
@@ -42,11 +42,11 @@ public class Aula {
         this.id = id;
     }
 
-    public int getQuantidadeFalta() {
+    public Integer getQuantidadeFalta() {
         return quantidadeFalta;
     }
 
-    public void setQuantidadeFalta(int quantidadeFalta) {
+    public void setQuantidadeFalta(Integer quantidadeFalta) {
         this.quantidadeFalta = quantidadeFalta;
     }
 

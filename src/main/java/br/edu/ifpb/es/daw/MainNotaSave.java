@@ -12,7 +12,7 @@ public class MainNotaSave {
             NotaDAO dao = new NotaDAOImpl(emf);
             Nota nota = new Nota();
 
-            nota.setValor(10);
+            nota.setValor(10.0);
             nota.setDescricao("Prova de matematica aplicada dia 03/05/2025");
 
             System.out.println("Nota salvo com sucesso!");
