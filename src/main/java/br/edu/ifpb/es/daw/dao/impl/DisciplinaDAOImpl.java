@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class DisciplinaDAOImpl extends AbstractDAOImpl<Disciplina, Long> implements DisciplinaDAO {
 
-    public DisciplinaDAOImpl(Connection connection) {
-        super(connection, "disciplina"); // "disciplina" é o nome da tabela no banco de dados
+    public DisciplinaDAOImpl() {
+        super("disciplina"); // "disciplina" é o nome da tabela no banco de dados
     }
 
     // Implementa o SQL de INSERT

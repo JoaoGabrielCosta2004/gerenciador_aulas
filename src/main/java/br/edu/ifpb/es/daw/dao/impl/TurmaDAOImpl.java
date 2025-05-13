@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class TurmaDAOImpl extends AbstractDAOImpl<Turma, Long> implements TurmaDAO {
 
-    public TurmaDAOImpl(Connection connection) {
-        super(connection, "turma"); // "turma" é o nome da tabela no banco de dados
+    public TurmaDAOImpl() {
+        super("turma"); // "turma" é o nome da tabela no banco de dados
     }
 
     // Implementa o SQL de INSERT

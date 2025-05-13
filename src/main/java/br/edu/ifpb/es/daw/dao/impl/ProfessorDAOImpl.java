@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class ProfessorDAOImpl extends AbstractDAOImpl<Professor, Long> implements ProfessorDAO {
 
-    public ProfessorDAOImpl(Connection connection) {
-        super(connection, "professor"); // "professor" é o nome da tabela no banco de dados
+    public ProfessorDAOImpl() {
+        super("professor"); // "professor" é o nome da tabela no banco de dados
     }
 
     // Implementa o SQL de INSERT

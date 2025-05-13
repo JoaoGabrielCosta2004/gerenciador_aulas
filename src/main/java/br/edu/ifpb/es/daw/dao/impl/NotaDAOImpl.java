@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO {
 
-    public NotaDAOImpl(Connection connection) {
-        super(connection, "nota"); // "nota" é o nome da tabela no banco de dados
+    public NotaDAOImpl() {
+        super("nota"); // "nota" é o nome da tabela no banco de dados
     }
 
     // Implementa o SQL de INSERT

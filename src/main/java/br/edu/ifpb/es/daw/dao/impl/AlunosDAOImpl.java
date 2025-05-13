@@ -2,15 +2,14 @@ package br.edu.ifpb.es.daw.dao.impl;
 
 import br.edu.ifpb.es.daw.dao.AlunoDAO;
 import br.edu.ifpb.es.daw.entities.Aluno;
-import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 
 import java.sql.*;
 import java.time.LocalDate;
 
 public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements AlunoDAO {
 
-    public AlunosDAOImpl(Connection connection) {
-        super(connection, "aluno"); // "aluno" é o nome da tabela no banco de dados
+    public AlunosDAOImpl() {
+        super("aluno"); // "aluno" é o nome da tabela no banco de dados
     }
 
     // Implementa o SQL de INSERT

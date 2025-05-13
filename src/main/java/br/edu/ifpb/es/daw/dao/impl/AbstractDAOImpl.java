@@ -1,20 +1,28 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
+import br.edu.ifpb.es.daw.Config;
 import br.edu.ifpb.es.daw.dao.DAO;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 
 	private Connection connection;
 	private String tableName;
 
-	public AbstractDAOImpl(Connection connection, String tableName) {
-		this.connection = connection;
+	public AbstractDAOImpl(String tableName) {
 		this.tableName = tableName;
+		try {
+			this.connection = getConnection();
+		} catch (IOException | SQLException e) {
+			e.printStackTrace();
+            System.out.println("Erro ao carregar as configurações.");
+		}
 	}
 
 	// Método para salvar uma entidade no banco de dados
@@ -115,4 +123,14 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 
 	// Método abstrato para mapear o ResultSet para uma entidade E
 	protected abstract E mapResultSetToEntity(ResultSet rs) throws SQLException;
+
+	private Connection getConnection() throws IOException, SQLException{
+		// Carregar as configurações do arquivo
+			Properties properties = Config.loadConfig();
+				// Usar as configurações para a conexão
+			String url = properties.getProperty("db.url");
+			String usuario = properties.getProperty("db.usuario");
+			String senha = properties.getProperty("db.senha");
+			return DriverManager.getConnection(url, usuario, senha);
+	}
 }

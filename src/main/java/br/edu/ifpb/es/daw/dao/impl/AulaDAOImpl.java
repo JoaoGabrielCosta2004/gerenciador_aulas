@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 public class AulaDAOImpl extends AbstractDAOImpl<Aula, Long> implements AulaDAO {
 
-    public AulaDAOImpl(Connection connection) {
-        super(connection, "aula"); // "aula" é o nome da tabela no banco de dados
+    public AulaDAOImpl() {
+        super("aula"); // "aula" é o nome da tabela no banco de dados
     }
 
     // Implementa o SQL de INSERT

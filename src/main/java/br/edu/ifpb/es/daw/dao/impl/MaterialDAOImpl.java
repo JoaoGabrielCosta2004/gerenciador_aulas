@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class MaterialDAOImpl extends AbstractDAOImpl<Material, Long> implements MaterialDAO {
 
-    public MaterialDAOImpl(Connection connection) {
-        super(connection, "material"); // "material" é o nome da tabela no banco de dados
+    public MaterialDAOImpl() {
+        super("material"); // "material" é o nome da tabela no banco de dados
     }
 
     // Implementa o SQL de INSERT
