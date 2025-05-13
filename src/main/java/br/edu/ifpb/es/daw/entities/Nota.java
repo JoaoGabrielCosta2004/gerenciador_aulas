@@ -3,10 +3,9 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
-@Entity
+
 public class Nota {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String descricao;
     private Double valor;

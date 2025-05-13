@@ -1,15 +1,8 @@
 package br.edu.ifpb.es.daw.entities;
 
-import jakarta.persistence.*;
-
-@Entity
 public class Professor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-
-    @Column(unique = true)
     private String email;
     private String senha;
 
@@ -25,6 +18,7 @@ public class Professor {
     public Professor() {
     }
 
+    // Getters e setters
     public Long getId() { return id; }
     public String getNome() { return nome; }
     public String getEmail() { return email; }

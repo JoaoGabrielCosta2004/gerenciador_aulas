@@ -1,37 +1,26 @@
 package br.edu.ifpb.es.daw.entities;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
-@Entity
 public class Aluno {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
-    @Column(unique = true)
     private String matricula;
-
-    @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
-
-    public Aluno() {
-    }
+    // Construtores
+    public Aluno() {}
 
     public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
         this.dataNascimento = dataNascimento;
-
     }
 
     // Getters e Setters
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -63,8 +52,7 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
     }
 
-
-
+    // Método toString para visualização da entidade
     @Override
     public String toString() {
         return "Aluno{" +
