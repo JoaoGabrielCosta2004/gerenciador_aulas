@@ -8,7 +8,7 @@ import br.edu.ifpb.es.daw.entities.Aluno;
 import java.time.LocalDate;
 
 public class MainAlunoSave {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PersistenciaDawException {
 
 
                 // Criando o DAO
@@ -21,12 +21,7 @@ public class MainAlunoSave {
                 aluno.setMatricula(System.nanoTime() + "20250510");
 
                 // Salvando o aluno no banco de dados
-                try {
                     dao.save(aluno);
-                } catch (PersistenciaDawException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
                 // Exibindo mensagem de sucesso
                 System.out.println("Aluno salvo com sucesso!");
 
