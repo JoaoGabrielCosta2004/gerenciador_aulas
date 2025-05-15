@@ -15,7 +15,7 @@ public class AulaDAOImpl extends AbstractDAOImpl<Aula, Long> implements AulaDAO 
     // Implementa o SQL de INSERT
     @Override
     protected String getInsertSql(Aula aula) {
-        return "INSERT INTO aula (quantidade_falta, data, conteudo) VALUES (?, ?, ?)";
+        return "INSERT INTO aula (quantidadefalta, data, conteudo) VALUES (?, ?, ?)";
     }
 
     // Define os parâmetros para o INSERT
@@ -29,7 +29,7 @@ public class AulaDAOImpl extends AbstractDAOImpl<Aula, Long> implements AulaDAO 
     // Implementa o SQL de UPDATE
     @Override
     protected String getUpdateSql(Aula aula) {
-        return "UPDATE aula SET quantidade_falta = ?, data = ?, conteudo = ? WHERE id = ?";
+        return "UPDATE aula SET quantidadefalta = ?, data = ?, conteudo = ? WHERE id = ?";
     }
 
     // Define os parâmetros para o UPDATE
@@ -45,7 +45,7 @@ public class AulaDAOImpl extends AbstractDAOImpl<Aula, Long> implements AulaDAO 
     @Override
     protected Aula mapResultSetToEntity(ResultSet rs) throws SQLException {
         Long id = rs.getLong("id");
-        Integer quantidadeFalta = rs.getInt("quantidade_falta");
+        Integer quantidadeFalta = rs.getInt("quantidadefalta");
         LocalDate data = rs.getDate("data").toLocalDate();  // Convertendo java.sql.Date para LocalDate
         String conteudo = rs.getString("conteudo");
 
