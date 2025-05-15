@@ -1,6 +1,5 @@
 package br.edu.ifpb.es.daw;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifpb.es.daw.dao.AlunoDAO;
