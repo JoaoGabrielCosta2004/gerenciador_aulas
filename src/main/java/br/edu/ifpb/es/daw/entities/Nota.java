@@ -9,9 +9,19 @@ public class Nota {
     private Long id;
     private String descricao;
     private Double valor;
-  
+
+    private Integer id_aluno;
+
     public Nota(){
 
+    }
+
+    public Integer getId_aluno() {
+        return id_aluno;
+    }
+
+    public void setId_aluno(Integer id_aluno) {
+        this.id_aluno = id_aluno;
     }
 
     public Nota(Long id, String descricao, Double valor) {
