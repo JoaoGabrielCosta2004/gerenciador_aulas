@@ -14,7 +14,7 @@ public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO 
     // Implementa o SQL de INSERT
     @Override
     protected String getInsertSql(Nota nota) {
-        return "INSERT INTO nota (descricao, valor, aluno_id) VALUES (?, ?, ?)";
+        return "INSERT INTO nota (descricao, valor, aluno_id, disciplina_id) VALUES (?, ?, ?, ?)";
     }
 
     // Define os parâmetros para o INSERT
@@ -23,6 +23,7 @@ public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO 
         ps.setString(1, nota.getDescricao());
         ps.setDouble(2, nota.getValor());
         ps.setInt(3,nota.getId_aluno());
+        ps.setInt(4,nota.getId_disciplina());
     }
 
     // Implementa o SQL de UPDATE
@@ -46,6 +47,7 @@ public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO 
         String descricao = rs.getString("descricao");
         Double valor = rs.getDouble("valor");
         Integer aluno_id = rs.getInt("aluno_id");
+        Integer disciplina_id = rs.getInt("disciplina_id");
 
         // Criando uma nova instância de Nota e definindo os valores através dos setters
         Nota nota = new Nota();
@@ -53,6 +55,7 @@ public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO 
         nota.setDescricao(descricao);
         nota.setValor(valor);
         nota.setId_aluno(aluno_id);
+        nota.setId_disciplina(disciplina_id);
 
         return nota;
     }

@@ -10,9 +10,10 @@ public class MainNotaSave {
         NotaDAO dao = new NotaDAOImpl();
         Nota nota = new Nota();
 
-        nota.setValor(10.0);
-        nota.setId_aluno(7);
-        nota.setDescricao("Prova de matematica aplicada dia 03/05/2025");
+        nota.setValor(7.0);
+        nota.setId_aluno(10);
+        nota.setId_disciplina(6);
+        nota.setDescricao("Prova de Geografia aplicada dia 13/05/2025");
 
         System.out.println("Nota salvo com sucesso!");
 

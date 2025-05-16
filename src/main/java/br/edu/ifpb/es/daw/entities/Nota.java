@@ -12,8 +12,18 @@ public class Nota {
 
     private Integer id_aluno;
 
+    private Integer id_disciplina;
+
     public Nota(){
 
+    }
+
+    public Integer getId_disciplina() {
+        return id_disciplina;
+    }
+
+    public void setId_disciplina(Integer id_disciplina) {
+        this.id_disciplina = id_disciplina;
     }
 
     public Integer getId_aluno() {
