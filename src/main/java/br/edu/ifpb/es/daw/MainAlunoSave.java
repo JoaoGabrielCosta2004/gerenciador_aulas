@@ -16,7 +16,7 @@ public class MainAlunoSave {
 
                 // Criando um novo aluno
                 Aluno aluno = new Aluno();
-                aluno.setNome("Julia Xavier Souza");
+                aluno.setNome("João Gabriel Costa");
                 aluno.setDataNascimento(LocalDate.of(2015, 1, 1));
                 aluno.setMatricula(System.nanoTime() + "20250510");
 

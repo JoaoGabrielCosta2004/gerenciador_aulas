@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 
-	private Connection connection;
+	/*private*/ Connection connection;
 	private String tableName;
 
 	public AbstractDAOImpl(String tableName) {

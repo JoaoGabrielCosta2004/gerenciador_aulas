@@ -10,7 +10,7 @@ public class MainDisciplinaSave {
         DisciplinaDAO dao = new DisciplinaDAOImpl();
         Disciplina disciplina = new Disciplina();
 
-        disciplina.setNome("Portugues");
+        disciplina.setNome("");
 
 
         System.out.println("Disciplina salvo com sucesso!");
