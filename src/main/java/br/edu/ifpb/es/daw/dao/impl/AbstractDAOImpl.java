@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 
-	/*private*/ Connection connection;
+	private Connection connection;
 	private String tableName;
 
 	public AbstractDAOImpl(String tableName) {
@@ -94,6 +94,10 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 		return list;
 	}
 
+	protected Connection getConnectionInstance() {
+		return this.connection;
+	}
+
 	// Método abstrato para gerar o SQL de INSERT
 	protected abstract String getInsertSql(E obj);
 
@@ -123,6 +127,15 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 
 	// Método abstrato para mapear o ResultSet para uma entidade E
 	protected abstract E mapResultSetToEntity(ResultSet rs) throws SQLException;
+
+	//Permite executar consultas SQL parametrizadas de forma flexível e segura.
+	protected ResultSet executeQuery(String sql, Object... params) throws SQLException {
+		PreparedStatement ps = connection.prepareStatement(sql);
+		for (int i = 0; i < params.length; i++) {
+			ps.setObject(i + 1, params[i]);
+		}
+		return ps.executeQuery();
+	}
 
 	private Connection getConnection() throws IOException, SQLException{
 		// Carregar as configurações do arquivo
