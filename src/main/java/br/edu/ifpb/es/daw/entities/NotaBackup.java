@@ -1,6 +1,5 @@
 package br.edu.ifpb.es.daw.entities;
-
-import jakarta.json.bind.annotation.JsonbProperty;
+import org.bson.Document;
 
 public class NotaBackup {
     private Long id;
@@ -18,8 +17,27 @@ public class NotaBackup {
         this.disciplinaNome = disciplinaNome;
     }
 
+    //colocar esses métodos em uma classe de conexão separada!!!!!!
+    public Document toDocument() {
+        return new Document("nota", nota)
+                .append("alunoNome", alunoNome)
+                .append("alunoMatricula", alunoMatricula)
+                .append("disciplinaNome", disciplinaNome)
+                .append("id", id);
+    }
+
+    public static NotaBackup fromDocument(Document doc) {
+        return new NotaBackup(
+                doc.getLong("id"),
+                doc.getString("nota"),
+                doc.getString("alunoNome"),
+                doc.getString("alunoMatricula"),
+                doc.getString("disciplinaNome")
+        );
+    }
+    //********************Até Aqui***********************************
+
     // Getters e Setters
-    @JsonbProperty("nota")
     public String getNota() {
         return nota;
     }
@@ -52,7 +70,6 @@ public class NotaBackup {
         this.disciplinaNome = disciplinaNome;
     }
 
-    @JsonbProperty("notabackup_id")
     public Long getId() {
         return id;
     }

@@ -58,6 +58,7 @@ public class NotaBackupDAOImpl extends AbstractDAOImpl<NotaBackup, Long> impleme
                 "JOIN disciplina ON nota.disciplina_id = disciplina.id";
 
         List<NotaBackup> notas = new ArrayList<>();
+        //colocar toda a conexão em um objeto separado!!!
         try (PreparedStatement ps = getConnectionInstance().prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
