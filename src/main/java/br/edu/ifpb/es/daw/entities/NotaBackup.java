@@ -8,7 +8,6 @@ public class NotaBackup {
     private String alunoMatricula;
     private String disciplinaNome;
 
-    // Construtor
     public NotaBackup(Long id,String nota, String alunoNome, String alunoMatricula, String disciplinaNome) {
         this.id = id;
         this.nota = nota;
@@ -37,7 +36,6 @@ public class NotaBackup {
     }
     //********************Até Aqui***********************************
 
-    // Getters e Setters
     public String getNota() {
         return nota;
     }

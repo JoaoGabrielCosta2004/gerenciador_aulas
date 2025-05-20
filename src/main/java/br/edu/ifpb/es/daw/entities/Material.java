@@ -3,12 +3,9 @@ package br.edu.ifpb.es.daw.entities;
 public class Material {
 
     private Long id;
-
     private String tipo;
     private String titulo;
     private String link;
-
-
 
     public Long getId() {
         return id;
@@ -17,7 +14,6 @@ public class Material {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getLink() {
         return link;

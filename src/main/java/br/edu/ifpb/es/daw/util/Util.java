@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Util {
-
 	public static Date getDate(int ano, int mes, int dia) {
 		
 		Calendar cal = Calendar.getInstance();
@@ -14,7 +13,6 @@ public class Util {
 		
 		return cal.getTime();
 	}
-
 	public static Date removeTime(Date date) {    
 	    Calendar cal = Calendar.getInstance();  
 	    cal.setTime(date);  
@@ -24,7 +22,6 @@ public class Util {
 	    cal.set(Calendar.MILLISECOND, 0);  
 	    return cal.getTime(); 
 	}
-
 	public static long getRandomCC() {
 		long min = 1000000000000000L;
 		long max = 9999999999999999L;

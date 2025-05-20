@@ -9,7 +9,6 @@ public class Aluno {
     private String matricula;
     private LocalDate dataNascimento;
 
-    // Construtores
     public Aluno() {}
 
     public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento) {
@@ -19,7 +18,6 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -52,7 +50,6 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
     }
 
-    // Método toString para visualização da entidade
     @Override
     public String toString() {
         return "Aluno{" +

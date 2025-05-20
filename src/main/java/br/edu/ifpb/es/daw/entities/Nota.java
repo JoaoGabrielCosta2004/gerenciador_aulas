@@ -1,11 +1,6 @@
 package br.edu.ifpb.es.daw.entities;
 
-
-import jakarta.persistence.*;
-
-
 public class Nota {
-
     private Long id;
     private String descricao;
     private Double valor;

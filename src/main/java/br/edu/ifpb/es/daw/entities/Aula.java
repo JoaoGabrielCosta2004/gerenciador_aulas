@@ -9,10 +9,8 @@ public class Aula {
     private LocalDate data;
     private String conteudo;
 
-    // Construtor padrão
     public Aula() {}
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
