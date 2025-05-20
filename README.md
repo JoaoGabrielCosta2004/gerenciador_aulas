@@ -25,6 +25,7 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
 
   ## Modelo Lógico
-  ![Modelo Lógico](https://github.com/user-attachments/assets/cf70b5fb-0cc9-4800-b121-91fefab7fc96)
+  ![Modelo Lógico](https://github.com/user-attachments/assets/39df9e47-e1b4-4c92-91b5-72ecd1d40b30)
+
 
 
