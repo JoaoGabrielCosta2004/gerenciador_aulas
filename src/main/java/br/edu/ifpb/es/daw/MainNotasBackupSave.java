@@ -10,10 +10,8 @@ import java.util.List;
 
 public class MainNotasBackupSave {
     public static void main(String[] args) {
-        // Criar DAO
         NotaBackupDAO notaBackupDAO = new NotaBackupDAOImpl();
 
-        // Obter dadosgit
         List<NotaBackup> notas;
         try {
             notas = notaBackupDAO.getAll();
@@ -22,8 +20,6 @@ public class MainNotasBackupSave {
             System.err.println("Erro ao recuperar as notas: " + e.getMessage());
             return;
         }
-
-        // Exibir os dados no console
         for (NotaBackup nota : notas) {
             System.out.println("---------------");
             System.out.println("ID: " + nota.getId());

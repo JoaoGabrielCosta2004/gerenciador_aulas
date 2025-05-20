@@ -12,7 +12,6 @@ public class MainMongoTeste {
         NotaBackupDAO bdJDBC = new NotaBackupDAOImpl();
         NotaBackupMongo dao = new NotaBackupMongo("escola", "notas_backup");
 
-        // Inserção
         for (NotaBackup tab : bdJDBC.getAll()) {
             dao.salvar(tab);
         }
@@ -23,12 +22,5 @@ public class MainMongoTeste {
         for (NotaBackup n : notas) {
             System.out.println(n);
         }
-        System.out.println("+------------+-----------------+--------------+-----------------+");
-
-        // Atualização de nota
-        dao.atualizarNota("20240001", "9.8");
-
-        // Deletar por matrícula
-        // dao.deletarPorMatricula("20240001");
     }
 }

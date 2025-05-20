@@ -9,20 +9,14 @@ import java.time.LocalDate;
 
 public class MainAlunoSave {
     public static void main(String[] args) throws PersistenciaDawException {
-
-
-                // Criando o DAO
                 AlunoDAO dao = new AlunosDAOImpl();
 
-                // Criando um novo aluno
                 Aluno aluno = new Aluno();
                 aluno.setNome("João Gabriel Costa");
                 aluno.setDataNascimento(LocalDate.of(2015, 1, 1));
                 aluno.setMatricula(System.nanoTime() + "20250510");
 
-                // Salvando o aluno no banco de dados
                     dao.save(aluno);
-                // Exibindo mensagem de sucesso
                 System.out.println("Aluno salvo com sucesso!");
 
             

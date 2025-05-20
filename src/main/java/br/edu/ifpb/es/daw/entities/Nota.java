@@ -1,5 +1,6 @@
 package br.edu.ifpb.es.daw.entities;
 
+
 public class Nota {
     private Long id;
     private String descricao;
