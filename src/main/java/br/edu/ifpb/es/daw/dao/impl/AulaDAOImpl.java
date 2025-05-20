@@ -9,51 +9,46 @@ import java.time.LocalDate;
 public class AulaDAOImpl extends AbstractDAOImpl<Aula, Long> implements AulaDAO {
 
     public AulaDAOImpl() {
-        super("aula"); // "aula" é o nome da tabela no banco de dados
+        super("aula");
     }
 
-    // Implementa o SQL de INSERT
     @Override
     protected String getInsertSql(Aula aula) {
         return "INSERT INTO aula (quantidadefalta, data, conteudo) VALUES (?, ?, ?)";
     }
 
-    // Define os parâmetros para o INSERT
     @Override
     protected void setInsertParameters(PreparedStatement ps, Aula aula) throws SQLException {
         ps.setInt(1, aula.getQuantidadeFalta());
-        ps.setDate(2, Date.valueOf(aula.getData()));  // Convertendo LocalDate para java.sql.Date
+        ps.setDate(2, Date.valueOf(aula.getData()));
         ps.setString(3, aula.getConteudo());
     }
 
-    // Implementa o SQL de UPDATE
     @Override
     protected String getUpdateSql(Aula aula) {
         return "UPDATE aula SET quantidadefalta = ?, data = ?, conteudo = ? WHERE id = ?";
     }
 
-    // Define os parâmetros para o UPDATE
     @Override
     protected void setUpdateParameters(PreparedStatement ps, Aula aula) throws SQLException {
         ps.setInt(1, aula.getQuantidadeFalta());
-        ps.setDate(2, Date.valueOf(aula.getData()));  // Convertendo LocalDate para java.sql.Date
+        ps.setDate(2, Date.valueOf(aula.getData()));
         ps.setString(3, aula.getConteudo());
         ps.setLong(4, aula.getId());
     }
 
-    // Mapeia o ResultSet para a entidade Aula
     @Override
     protected Aula mapResultSetToEntity(ResultSet rs) throws SQLException {
         Long id = rs.getLong("id");
         Integer quantidadeFalta = rs.getInt("quantidadefalta");
-        LocalDate data = rs.getDate("data").toLocalDate();  // Convertendo java.sql.Date para LocalDate
+        LocalDate data = rs.getDate("data").toLocalDate();
         String conteudo = rs.getString("conteudo");
 
-        // Criando uma nova instância de Aula e definindo os valores através dos setters
-        Aula aula = new Aula();  // Usando o construtor padrão
+
+        Aula aula = new Aula();
         aula.setId(id);
         aula.setQuantidadeFalta(quantidadeFalta);
-        aula.setData(String.valueOf(data));  // Passando LocalDate diretamente //n sei se funcionou
+        aula.setData(String.valueOf(data));
         aula.setConteudo(conteudo);
 
         return aula;
