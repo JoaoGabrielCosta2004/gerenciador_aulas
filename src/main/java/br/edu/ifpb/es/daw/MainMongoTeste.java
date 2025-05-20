@@ -14,8 +14,7 @@ public class MainMongoTeste {
 
         // Inserção
         for (NotaBackup tab : bdJDBC.getAll()) {
-            NotaBackup nota = bdJDBC.getByID(tab.getId());
-            dao.salvar(nota);
+            dao.salvar(tab);
         }
         System.out.println("Todas as notas registradas");
 

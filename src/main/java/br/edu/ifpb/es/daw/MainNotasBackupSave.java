@@ -16,7 +16,7 @@ public class MainNotasBackupSave {
         // Obter dadosgit
         List<NotaBackup> notas;
         try {
-            notas = ((NotaBackupDAOImpl) notaBackupDAO).getAllNotasCompletas();
+            notas = notaBackupDAO.getAll();
             System.out.println("Notas recuperadas com sucesso!");
         } catch (PersistenciaDawException e) {
             System.err.println("Erro ao recuperar as notas: " + e.getMessage());

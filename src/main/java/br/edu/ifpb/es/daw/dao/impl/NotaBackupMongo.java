@@ -15,7 +15,7 @@ public class NotaBackupMongo {
     private final MongoCollection<Document> collection;
 
     public NotaBackupMongo(String dbName, String collectionName) {
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://dbuser:V7xWaXl4xM0YW3NR@gerenciadoraulas.0ew11m5.mongodb.net/");
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://dbuser:ALdidldi3FGOFilo@gerenciadoraulas.0ew11m5.mongodb.net/?retryWrites=true&w=majority&appName=gerenciadorAulas");
         MongoDatabase database = mongoClient.getDatabase(dbName);
         this.collection = database.getCollection(collectionName);
     }

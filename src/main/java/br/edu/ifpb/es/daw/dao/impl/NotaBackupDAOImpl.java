@@ -50,7 +50,8 @@ public class NotaBackupDAOImpl extends AbstractDAOImpl<NotaBackup, Long> impleme
     }
 
     // Método específico para recuperar notas completas com dados de aluno e disciplina
-    public List<NotaBackup> getAllNotasCompletas() throws PersistenciaDawException {
+    @Override
+    public List<NotaBackup> getAll() throws PersistenciaDawException {
         String sql = "SELECT nota.id, nota.valor, aluno.nome AS aluno_nome, aluno.matricula AS aluno_matricula, " +
                 "disciplina.nome AS disciplina_nome " +
                 "FROM nota " +
