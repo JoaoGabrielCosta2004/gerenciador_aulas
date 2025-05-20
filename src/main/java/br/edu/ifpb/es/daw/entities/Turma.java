@@ -5,18 +5,15 @@ public class Turma {
     private String nome;
     private Integer ano;
 
-    // Construtor com parâmetros
     public Turma(Long id, String nome, Integer ano) {
         this.id = id;
         this.nome = nome;
         this.ano = ano;
     }
 
-    // Construtor padrão (sem parâmetros)
     public Turma() {
     }
 
-    // Getters e setters
     public Long getId() { return id; }
     public String getNome() { return nome; }
     public Integer getAno() { return ano; }

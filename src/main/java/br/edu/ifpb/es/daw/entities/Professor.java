@@ -6,7 +6,6 @@ public class Professor {
     private String email;
     private String senha;
 
-    // Construtor com parâmetros
     public Professor(Long id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
@@ -14,7 +13,6 @@ public class Professor {
         this.senha = senha;
     }
 
-    // Construtor padrão (sem parâmetros)
     public Professor() {
     }
 

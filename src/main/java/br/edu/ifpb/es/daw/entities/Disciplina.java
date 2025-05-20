@@ -1,10 +1,6 @@
 package br.edu.ifpb.es.daw.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.*;
-
-
 public class Disciplina {
     private Long id;
 
