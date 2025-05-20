@@ -25,7 +25,6 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 		}
 	}
 
-	// Método para salvar uma entidade no banco de dados
 	@Override
 	public void save(E obj) throws PersistenciaDawException {
 		String sql = getInsertSql(obj);
@@ -37,7 +36,6 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 		}
 	}
 
-	// Método para atualizar uma entidade no banco de dados
 	@Override
 	public E update(E obj) throws PersistenciaDawException {
 		String sql = getUpdateSql(obj);
@@ -50,7 +48,6 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 		}
 	}
 
-	// Método para deletar uma entidade do banco de dados
 	@Override
 	public void delete(T primaryKey) throws PersistenciaDawException {
 		String sql = getDeleteSql();
@@ -62,7 +59,6 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 		}
 	}
 
-	// Método para recuperar uma entidade pelo ID
 	@Override
 	public E getByID(T primaryKey) throws PersistenciaDawException {
 		String sql = getSelectByIdSql();
@@ -78,7 +74,6 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 		}
 	}
 
-	// Método para recuperar todas as entidades da tabela
 	@Override
 	public List<E> getAll() throws PersistenciaDawException {
 		String sql = getSelectAllSql();
@@ -98,37 +93,28 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 		return this.connection;
 	}
 
-	// Método abstrato para gerar o SQL de INSERT
 	protected abstract String getInsertSql(E obj);
 
-	// Método abstrato para definir os parâmetros do INSERT
 	protected abstract void setInsertParameters(PreparedStatement ps, E obj) throws SQLException;
 
-	// Método abstrato para gerar o SQL de UPDATE
 	protected abstract String getUpdateSql(E obj);
 
-	// Método abstrato para definir os parâmetros do UPDATE
 	protected abstract void setUpdateParameters(PreparedStatement ps, E obj) throws SQLException;
 
-	// Método para gerar o SQL de DELETE
 	protected String getDeleteSql() {
 		return "DELETE FROM " + tableName + " WHERE id = ?";
 	}
 
-	// Método para gerar o SQL de SELECT por ID
 	protected String getSelectByIdSql() {
 		return "SELECT * FROM " + tableName + " WHERE id = ?";
 	}
 
-	// Método para gerar o SQL de SELECT ALL
 	protected String getSelectAllSql() {
 		return "SELECT * FROM " + tableName;
 	}
 
-	// Método abstrato para mapear o ResultSet para uma entidade E
 	protected abstract E mapResultSetToEntity(ResultSet rs) throws SQLException;
 
-	//Permite executar consultas SQL parametrizadas de forma flexível e segura.
 	protected ResultSet executeQuery(String sql, Object... params) throws SQLException {
 		PreparedStatement ps = connection.prepareStatement(sql);
 		for (int i = 0; i < params.length; i++) {
@@ -138,9 +124,8 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 	}
 
 	private Connection getConnection() throws IOException, SQLException{
-		// Carregar as configurações do arquivo
 			Properties properties = Config.loadConfig();
-				// Usar as configurações para a conexão
+
 			String url = properties.getProperty("db.url");
 			String usuario = properties.getProperty("db.usuario");
 			String senha = properties.getProperty("db.senha");

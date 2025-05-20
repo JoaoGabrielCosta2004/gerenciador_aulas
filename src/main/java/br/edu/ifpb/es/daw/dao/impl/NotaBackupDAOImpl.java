@@ -13,29 +13,25 @@ import java.util.List;
 public class NotaBackupDAOImpl extends AbstractDAOImpl<NotaBackup, Long> implements NotaBackupDAO {
 
     public NotaBackupDAOImpl() {
-        super("nota");  // Nome da tabela principal
+        super("nota");
     }
 
     @Override
     protected String getInsertSql(NotaBackup obj) {
-        // Não será utilizado neste DAO
         return null;
     }
 
     @Override
     protected void setInsertParameters(PreparedStatement ps, NotaBackup obj) throws SQLException {
-        // Não será utilizado neste DAO
     }
 
     @Override
     protected String getUpdateSql(NotaBackup obj) {
-        // Não será utilizado neste DAO
         return null;
     }
 
     @Override
     protected void setUpdateParameters(PreparedStatement ps, NotaBackup obj) throws SQLException {
-        // Não será utilizado neste DAO
     }
 
     @Override

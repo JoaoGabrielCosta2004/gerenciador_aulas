@@ -8,16 +8,14 @@ import java.sql.*;
 public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO {
 
     public NotaDAOImpl() {
-        super("nota"); // "nota" é o nome da tabela no banco de dados
+        super("nota");
     }
 
-    // Implementa o SQL de INSERT
     @Override
     protected String getInsertSql(Nota nota) {
         return "INSERT INTO nota (descricao, valor, aluno_id, disciplina_id) VALUES (?, ?, ?, ?)";
     }
 
-    // Define os parâmetros para o INSERT
     @Override
     protected void setInsertParameters(PreparedStatement ps, Nota nota) throws SQLException {
         ps.setString(1, nota.getDescricao());
@@ -26,13 +24,11 @@ public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO 
         ps.setInt(4,nota.getId_disciplina());
     }
 
-    // Implementa o SQL de UPDATE
     @Override
     protected String getUpdateSql(Nota nota) {
         return "UPDATE nota SET descricao = ?, valor = ? WHERE id = ?";
     }
 
-    // Define os parâmetros para o UPDATE
     @Override
     protected void setUpdateParameters(PreparedStatement ps, Nota nota) throws SQLException {
         ps.setString(1, nota.getDescricao());
@@ -40,7 +36,6 @@ public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO 
         ps.setLong(3, nota.getId());
     }
 
-    // Mapeia o ResultSet para a entidade Nota
     @Override
     protected Nota mapResultSetToEntity(ResultSet rs) throws SQLException {
         Long id = rs.getLong("id");
@@ -49,7 +44,6 @@ public class NotaDAOImpl extends AbstractDAOImpl<Nota, Long> implements NotaDAO 
         Integer aluno_id = rs.getInt("aluno_id");
         Integer disciplina_id = rs.getInt("disciplina_id");
 
-        // Criando uma nova instância de Nota e definindo os valores através dos setters
         Nota nota = new Nota();
         nota.setId(id);
         nota.setDescricao(descricao);
