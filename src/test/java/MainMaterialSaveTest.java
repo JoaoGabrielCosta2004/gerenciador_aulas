@@ -47,7 +47,7 @@ public class MainMaterialSaveTest {
         Material material = new Material();
         material.setTitulo("Prova matematica 5° ano");
         material.setTipo("Prova");
-        material.setLink(System.nanoTime());
+        material.setLink(System.nanoTime()+"");
         material.setAula(aula);
 
         materialdao.save(material);

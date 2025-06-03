@@ -59,7 +59,7 @@ public class MainNotaSaveTest {
 
         Nota nota = new Nota();
         nota.setValor(10.0);
-        nota.setDescricao(System.nanoTime()"Prova de matemática aplicada dia 03/05/2025");
+        nota.setDescricao(System.nanoTime()+"Prova de matemática aplicada dia 03/05/2025");
         nota.setAluno(aluno);
         nota.setDisciplina(disciplina);
         nota.setMaterial(material);
