@@ -131,4 +131,14 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 			String senha = properties.getProperty("db.senha");
 			return DriverManager.getConnection(url, usuario, senha);
 	}
+
+	@Override
+	public void restartSequence() throws PersistenciaDawException{
+		String sql = "ALTER SEQUENCE public."+ tableName + "_id_seq RESTART 1";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenciaDawException("Erro ao resetar a sequencia", e);
+		} 
+	}
 }

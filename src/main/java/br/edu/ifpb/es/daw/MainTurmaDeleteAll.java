@@ -15,5 +15,6 @@ public class MainTurmaDeleteAll {
         for (Turma turma : lista) {
             dao.delete(turma.getId());
         }
+        dao.restartSequence();
     }
 }

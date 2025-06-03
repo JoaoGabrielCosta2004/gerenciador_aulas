@@ -15,5 +15,6 @@ public class MainAlunoDeleteAll {
         for (Aluno aluno : lista) {
             dao.delete(aluno.getId());
         }
+                dao.restartSequence();
     }
 }

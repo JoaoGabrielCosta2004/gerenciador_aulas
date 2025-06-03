@@ -15,5 +15,6 @@ public class MainDisciplinaDeleteAll {
         for (Disciplina dis : lista) {
             dao.delete(dis.getId());
         }
+        dao.restartSequence();
     }
 }

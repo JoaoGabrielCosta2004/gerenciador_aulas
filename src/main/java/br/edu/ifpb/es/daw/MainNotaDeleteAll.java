@@ -15,5 +15,6 @@ public class MainNotaDeleteAll {
         for (Nota nota : lista) {
             dao.delete(nota.getId());
         }
+        dao.restartSequence();
     }
 }

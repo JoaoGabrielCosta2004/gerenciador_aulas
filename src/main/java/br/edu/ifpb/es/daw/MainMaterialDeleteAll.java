@@ -15,5 +15,6 @@ public class MainMaterialDeleteAll {
         for (Material mat : lista) {
             dao.delete(mat.getId());
         }
+        dao.restartSequence();
     }
 }

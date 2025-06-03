@@ -13,4 +13,6 @@ public interface DAO<E, T> {
     E getByID(T primaryKey) throws PersistenciaDawException;
 
     List<E> getAll() throws PersistenciaDawException;
+
+    void restartSequence() throws PersistenciaDawException;
 }
