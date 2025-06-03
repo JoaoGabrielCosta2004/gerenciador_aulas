@@ -7,15 +7,20 @@ import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Aula {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer quantidadeFalta;
+    private Integer quantidadeFalta = 0;
 
     private LocalDate data;
 
     private String conteudo;
+
+    @ManyToOne
+    @JoinColumn(name = "professor_id", referencedColumnName = "id")
+    private Professor professor;
 
     public String getConteudo() {
         return conteudo;
@@ -50,6 +55,14 @@ public class Aula {
         this.quantidadeFalta = quantidadeFalta;
     }
 
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
     @Override
     public String toString() {
         return "Aula{" +
@@ -57,6 +70,7 @@ public class Aula {
                 ", id=" + id +
                 ", quantidadeFalta=" + quantidadeFalta +
                 ", data='" + data + '\'' +
+                ", professor=" + professor.getNome() +
                 '}';
     }
 }
