@@ -1,7 +1,6 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -18,20 +17,23 @@ public class Aluno {
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
+    @ManyToOne
+    @JoinColumn(name = "turma_id", referencedColumnName = "id")
+    private Turma turma;
 
     public Aluno() {
     }
 
-    public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento) {
+    public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento, Turma turma) {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
         this.dataNascimento = dataNascimento;
-
+        this.turma = turma;
     }
 
     // Getters e Setters
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -63,7 +65,13 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
     }
 
+    public Turma getTurma() {
+        return turma;
+    }
 
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
 
     @Override
     public String toString() {
@@ -72,6 +80,7 @@ public class Aluno {
                 ", nome='" + nome + '\'' +
                 ", matricula='" + matricula + '\'' +
                 ", dataNascimento=" + dataNascimento +
+                ", turma=" + turma +
                 '}';
     }
 }
