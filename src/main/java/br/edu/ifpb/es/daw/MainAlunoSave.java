@@ -17,7 +17,7 @@ public class MainAlunoSave {
             AlunoDAO alunoDao = new AlunosDAOImpl(emf);
             TurmaDAO turmaDao = new TurmaDAOImpl(emf);
 
-            Turma turma = turmaDao.getByID(2L);
+            Turma turma = turmaDao.getByID(1L);
 
                 Aluno aluno = new Aluno();
                 aluno.setNome("Julia Xavier Silva");

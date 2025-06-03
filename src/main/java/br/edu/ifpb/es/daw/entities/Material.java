@@ -14,6 +14,9 @@ public class Material {
     private String titulo;
     private String link;
 
+    @ManyToOne
+    @JoinColumn(name = "aula_id", referencedColumnName = "id")
+    private Aula aula;
 
 
     public Long getId() {
@@ -49,6 +52,14 @@ public class Material {
         this.titulo = titulo;
     }
 
+    public Aula getAula() {
+        return aula;
+    }
+
+    public void setAula(Aula aula) {
+        this.aula = aula;
+    }
+
     @Override
     public String toString() {
         return "Material{" +
@@ -56,6 +67,7 @@ public class Material {
                 ", tipo='" + tipo + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", link='" + link + '\'' +
+                ", aula=" + aula +
                 '}';
     }
 

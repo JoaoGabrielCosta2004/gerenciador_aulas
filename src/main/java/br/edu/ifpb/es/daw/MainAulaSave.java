@@ -15,7 +15,7 @@ public class MainAulaSave {
             AulaDAO aulaDAO = new AulaDAOImpl(emf);
             ProfessorDAO professorDAO = new ProfessorDAOImpl(emf);
 
-            Professor professor = professorDAO.getByID(6L);
+            Professor professor = professorDAO.getByID(1L);
 
 
             Aula aula = new Aula();
