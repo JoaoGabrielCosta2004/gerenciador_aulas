@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 @Entity
 public class Aula {
@@ -61,6 +62,19 @@ public class Aula {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aula aula = (Aula) o;
+        return Objects.equals(id, aula.id) && Objects.equals(quantidadeFalta, aula.quantidadeFalta) && Objects.equals(data, aula.data) && Objects.equals(conteudo, aula.conteudo) && Objects.equals(professor, aula.professor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, quantidadeFalta, data, conteudo, professor);
     }
 
     @Override

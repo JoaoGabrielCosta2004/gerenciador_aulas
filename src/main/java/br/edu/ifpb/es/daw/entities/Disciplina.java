@@ -4,6 +4,8 @@ package br.edu.ifpb.es.daw.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 public class Disciplina {
     @Id
@@ -14,7 +16,20 @@ public class Disciplina {
 
     public Disciplina(){
     }
-  
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Disciplina that = (Disciplina) o;
+        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome);
+    }
+
     public Disciplina(Long id, String nome) {
         this.id = id;
         this.nome = nome;

@@ -2,6 +2,8 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 public class Material {
     @Id
@@ -55,5 +57,18 @@ public class Material {
                 ", titulo='" + titulo + '\'' +
                 ", link='" + link + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Material material = (Material) o;
+        return Objects.equals(id, material.id) && Objects.equals(tipo, material.tipo) && Objects.equals(titulo, material.titulo) && Objects.equals(link, material.link);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tipo, titulo, link);
     }
 }

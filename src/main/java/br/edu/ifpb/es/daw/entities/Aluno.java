@@ -2,6 +2,7 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class Aluno {
@@ -71,6 +72,19 @@ public class Aluno {
 
     public void setTurma(Turma turma) {
         this.turma = turma;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aluno aluno = (Aluno) o;
+        return Objects.equals(id, aluno.id) && Objects.equals(nome, aluno.nome) && Objects.equals(matricula, aluno.matricula) && Objects.equals(dataNascimento, aluno.dataNascimento) && Objects.equals(turma, aluno.turma);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, matricula, dataNascimento, turma);
     }
 
     @Override

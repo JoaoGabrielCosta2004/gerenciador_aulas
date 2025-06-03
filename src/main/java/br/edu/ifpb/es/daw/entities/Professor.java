@@ -2,6 +2,8 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 public class Professor {
     @Id
@@ -38,5 +40,18 @@ public class Professor {
     @Override
     public String toString() {
         return "Professor{id=" + id + ", nome='" + nome + "', email='" + email + "'}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Professor professor = (Professor) o;
+        return Objects.equals(id, professor.id) && Objects.equals(nome, professor.nome) && Objects.equals(email, professor.email) && Objects.equals(senha, professor.senha);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, email, senha);
     }
 }

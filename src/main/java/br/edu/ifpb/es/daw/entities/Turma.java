@@ -2,6 +2,8 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 public class Turma {
     @Id
@@ -30,5 +32,18 @@ public class Turma {
     @Override
     public String toString() {
         return "Turma{id=" + id + ", nome='" + nome + "', ano=" + ano + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Turma turma = (Turma) o;
+        return Objects.equals(id, turma.id) && Objects.equals(nome, turma.nome) && Objects.equals(ano, turma.ano);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, ano);
     }
 }
