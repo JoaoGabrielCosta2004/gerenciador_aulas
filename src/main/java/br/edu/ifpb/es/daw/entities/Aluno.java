@@ -2,7 +2,9 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Aluno {
@@ -21,6 +23,14 @@ public class Aluno {
     @ManyToOne
     @JoinColumn(name = "turma_id", referencedColumnName = "id")
     private Turma turma;
+
+    @ManyToMany
+    @JoinTable(
+            name = "aluno_aula",
+            joinColumns = @JoinColumn(name = "aluno_id"),
+            inverseJoinColumns = @JoinColumn(name = "aula_id")
+    )
+    private Set<Aula> aulas = new HashSet<>();
 
     public Aluno() {
     }
@@ -72,6 +82,19 @@ public class Aluno {
 
     public void setTurma(Turma turma) {
         this.turma = turma;
+    }
+
+    public Set<Aula> getAulas() {
+        return aulas;
+    }
+
+    public void setAulas(Set<Aula> aulas) {
+        this.aulas = aulas;
+    }
+
+    public void adicionarAula(Aula aula) {
+        this.aulas.add(aula);
+        aula.getAlunos().add(this);
     }
 
     @Override

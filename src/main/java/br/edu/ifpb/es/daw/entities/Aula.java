@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Aula {
@@ -22,6 +24,9 @@ public class Aula {
     @ManyToOne
     @JoinColumn(name = "professor_id", referencedColumnName = "id")
     private Professor professor;
+
+    @ManyToMany(mappedBy = "aulas")
+    private Set<Aluno> alunos = new HashSet<>();
 
     public String getConteudo() {
         return conteudo;
@@ -63,6 +68,21 @@ public class Aula {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
+
+    public Set<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(Set<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
+    public void adicionarAluno(Aluno aluno) {
+        if (aluno != null) {
+            this.alunos.add(aluno);
+        }
+    }
+
 
     @Override
     public boolean equals(Object o) {

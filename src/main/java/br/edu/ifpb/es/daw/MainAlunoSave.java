@@ -20,7 +20,7 @@ public class MainAlunoSave {
             Turma turma = turmaDao.getByID(1L);
 
                 Aluno aluno = new Aluno();
-                aluno.setNome("Julia Xavier Silva");
+                aluno.setNome(System.nanoTime() + "João Gabriel Costa");
                 aluno.setDataNascimento(LocalDate.of(2015, 1, 1));
                 aluno.setMatricula(System.nanoTime() + "20250510");
 

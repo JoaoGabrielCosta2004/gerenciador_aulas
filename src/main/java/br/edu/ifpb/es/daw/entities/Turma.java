@@ -2,7 +2,9 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Turma {
@@ -11,6 +13,11 @@ public class Turma {
     private Long id;
     private String nome;
     private Integer ano;
+
+    @ManyToMany(mappedBy = "turmas")
+    private Set<Professor> professores = new HashSet<>();
+
+
 
     public Turma(){
     }
@@ -28,6 +35,14 @@ public class Turma {
     public void setId(Long id) { this.id = id; }
     public void setNome(String nome) { this.nome = nome; }
     public void setAno(Integer ano) { this.ano = ano; }
+
+    public Set<Professor> getProfessores() {
+        return professores;
+    }
+
+    public void setProfessores(Set<Professor> professores) {
+        this.professores = professores;
+    }
 
     @Override
     public String toString() {

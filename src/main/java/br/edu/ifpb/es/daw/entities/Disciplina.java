@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Disciplina {
@@ -13,6 +14,7 @@ public class Disciplina {
     private Long id;
 
     private String nome;
+
 
     public Disciplina(){
     }

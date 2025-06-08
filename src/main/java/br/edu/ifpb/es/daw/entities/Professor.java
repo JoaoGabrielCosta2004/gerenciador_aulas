@@ -2,7 +2,9 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Professor {
@@ -14,6 +16,14 @@ public class Professor {
     @Column(unique = true)
     private String email;
     private String senha;
+
+    @ManyToMany
+    @JoinTable(
+            name = "professor_turma",
+            joinColumns = @JoinColumn(name = "professor_id"),
+            inverseJoinColumns = @JoinColumn(name = "turma_id")
+    )
+    private Set<Turma> turmas = new HashSet<>();
 
     // Construtor com parâmetros
     public Professor(Long id, String nome, String email, String senha) {
@@ -36,6 +46,19 @@ public class Professor {
     public void setNome(String nome) { this.nome = nome; }
     public void setEmail(String email) { this.email = email; }
     public void setSenha(String senha) { this.senha = senha; }
+
+    public Set<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(Set<Turma> turmas) {
+        this.turmas = turmas;
+    }
+
+    public void adicionarTurma(Turma turma) {
+        this.turmas.add(turma);
+        turma.getProfessores().add(this);
+    }
 
     @Override
     public String toString() {
