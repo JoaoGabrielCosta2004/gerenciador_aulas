@@ -17,6 +17,9 @@ public class Professor {
     private String email;
     private String senha;
 
+    @ManyToOne
+    @JoinColumn(name = "disciplina_id", referencedColumnName = "id")
+    private Disciplina disciplina;
     @ManyToMany
     @JoinTable(
             name = "professor_turma",
@@ -46,6 +49,14 @@ public class Professor {
     public void setNome(String nome) { this.nome = nome; }
     public void setEmail(String email) { this.email = email; }
     public void setSenha(String senha) { this.senha = senha; }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
 
     public Set<Turma> getTurmas() {
         return turmas;
