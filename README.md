@@ -21,11 +21,12 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
   - Acompanhamento do desempenho dos alunos nas disciplinas que lecionam.
  
   ## Modelo Conceitual
-  ![Modelo Conceitual](https://github.com/user-attachments/assets/ce0c7e0b-b7a7-4b6f-8cc6-3b34c63024b8)
+  ![Modelo Conceitual](https://github.com/user-attachments/assets/42436b49-789f-4cdf-817b-aef8cd970a94)
 
 
   ## Modelo Lógico
-  ![Modelo Lógico](https://github.com/user-attachments/assets/39df9e47-e1b4-4c92-91b5-72ecd1d40b30)
+  ![Modelo Lógico](https://github.com/user-attachments/assets/8267f527-56b2-44f0-be76-e0557e189e4b)
+
 
 
 
