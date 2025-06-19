@@ -24,8 +24,8 @@ public class MainProjetoSave {
 			grande.setNome("Projeto Campus Novo");
 			grande.setOrcamento(new BigDecimal("2500000.00"));
 
-			projetoDAO.salvar(pequeno);
-			projetoDAO.salvar(grande);
+			projetoDAO.save(pequeno);
+			projetoDAO.save(grande);
 		}
 	}
 }

@@ -5,16 +5,16 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String modelo;
+    private String nome;
 
-    private String marca;
+    private String construtora;
 
     // Getters e Setters
     public Long getId() {
@@ -25,20 +25,20 @@ public class Veiculo {
         this.id = id;
     }
 
-    public String getModelo() {
-        return modelo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getConstrutora() {
+        return construtora;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setConstrutora(String construtora) {
+        this.construtora = construtora;
     }
 
     @Override
@@ -46,16 +46,16 @@ public class Veiculo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Veiculo veiculo = (Veiculo) o;
-        return Objects.equals(id, veiculo.id) && Objects.equals(modelo, veiculo.modelo) && Objects.equals(marca, veiculo.marca);
+        return Objects.equals(id, veiculo.id) && Objects.equals(nome, veiculo.nome) && Objects.equals(construtora, veiculo.construtora);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, modelo, marca);
+        return Objects.hash(id, nome, construtora);
     }
 
     @Override
     public String toString() {
-        return "Veiculo{id=" + id + ", modelo='" + modelo + "', marca='" + marca + "'}";
+        return "Veiculo{id=" + id + ", nome='" + nome + "', construtora='" + construtora + "'}";
     }
 }

@@ -31,7 +31,6 @@ public abstract class Projeto {
         this.nome = nome;
     }
 
-    // equals, hashCode e toString com todos os atributos
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

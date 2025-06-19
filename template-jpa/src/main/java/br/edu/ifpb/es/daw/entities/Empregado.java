@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Empregado {
 
     @Id
@@ -14,7 +14,6 @@ public class Empregado {
 
     private String nome;
 
-    private String cargo;
 
     // Getters e Setters
     public Long getId() {
@@ -33,13 +32,6 @@ public class Empregado {
         this.nome = nome;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
 
 
     @Override
@@ -47,16 +39,16 @@ public class Empregado {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Empregado empregado = (Empregado) o;
-        return Objects.equals(id, empregado.id) && Objects.equals(nome, empregado.nome) && Objects.equals(cargo, empregado.cargo);
+        return Objects.equals(id, empregado.id) && Objects.equals(nome, empregado.nome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, cargo);
+        return Objects.hash(id, nome);
     }
 
     @Override
     public String toString() {
-        return "Empregado{id=" + id + ", nome='" + nome + "', cargo='" + cargo + "'}";
+        return "Empregado{id=" + id + ", nome='" + nome + "'}";
     }
 }

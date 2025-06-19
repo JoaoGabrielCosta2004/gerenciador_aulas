@@ -13,9 +13,9 @@ public class MainProjetoDeleteAll {
 	public static void main(String[] args) throws DawException {
 		try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")) {
 			ProjetoDAO projetoDAO = new ProjetoDAOImpl(emf);
-			List<Projeto> projetos = projetoDAO.buscarTodos();
+			List<Projeto> projetos = projetoDAO.getAll();
 			for (Projeto projeto : projetos) {
-				projetoDAO.remover(projeto.getId());
+				projetoDAO.delete(projeto.getId());
 			}
 		}
 	}

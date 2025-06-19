@@ -9,5 +9,8 @@
         <module name="template-jpa" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="crud-jpa-template" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

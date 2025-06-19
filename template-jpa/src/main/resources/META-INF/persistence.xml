@@ -15,9 +15,9 @@
 			<!--
 			 -->
 			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/daw" />
-			<property name="jakarta.persistence.jdbc.user" value="daw" />
-			<property name="jakarta.persistence.jdbc.password" value="daw" />
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://ep-crimson-frog-a8mwfier-pooler.eastus2.azure.neon.tech/neondb?user=neondb_owner&amp;password=npg_5sQ8XdWZawxG&amp;sslmode=require" />
+			<property name="jakarta.persistence.jdbc.user" value="neondb_owner" />
+			<property name="jakarta.persistence.jdbc.password" value="npg_5sQ8XdWZawxG" />
 			<!-- /Database PostgreSQL-->
 
 			<!-- HIBERNATE -->
