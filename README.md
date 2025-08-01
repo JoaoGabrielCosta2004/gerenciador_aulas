@@ -28,4 +28,13 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
   ![Modelo Lógico](https://github.com/user-attachments/assets/8267f527-56b2-44f0-be76-e0557e189e4b)
 
 
+  ## Diagrama de Classes UML
+  ![Image](https://github.com/user-attachments/assets/6cc7173d-0873-47e3-8514-8e558ec7c166)
 
+  
+  ## Fluxograma
+  ![Image](https://github.com/user-attachments/assets/39ffb8b1-6003-4f4e-b9e7-344304bbd679)
+
+
+  ## Casos de uso
+  ![Image](https://github.com/user-attachments/assets/2b12fb7e-043c-4e6b-b235-d0b0bebb8700)
