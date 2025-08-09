@@ -5,6 +5,8 @@ public class Professor {
     private String nome;
     private String email;
     private String senha;
+    private Long disciplina_id;
+    private Long disciplina;
 
     public Professor(Long id, String nome, String email, String senha) {
         this.id = id;

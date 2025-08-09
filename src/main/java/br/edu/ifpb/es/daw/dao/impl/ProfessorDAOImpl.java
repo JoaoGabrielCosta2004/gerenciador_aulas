@@ -46,4 +46,17 @@ public class ProfessorDAOImpl extends AbstractDAOImpl<Professor, Long> implement
         String senha = rs.getString("senha");
         return new Professor(id, nome, email, senha);
     }
+
+    public Professor findByEmail(String email) throws SQLException {
+        String sql = "SELECT * FROM professor WHERE email = ?";
+        try (PreparedStatement ps = getConnectionInstance().prepareStatement(sql)) {
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapResultSetToEntity(rs);
+                }
+            }
+        }
+        return null;
+    }
 }
