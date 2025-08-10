@@ -1,16 +1,16 @@
 package br.edu.ifpb.es.daw.app.service;
 
-import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
-import br.edu.ifpb.es.daw.dao.ProfessorDAO;
-import br.edu.ifpb.es.daw.dao.ProfessorTurmaDAO;
-import br.edu.ifpb.es.daw.dao.TurmaDAO;
+import br.edu.ifpb.es.daw.dao.*;
+import br.edu.ifpb.es.daw.dao.impl.AlunosDAOImpl;
 import br.edu.ifpb.es.daw.dao.impl.ProfessorDAOImpl;
 import br.edu.ifpb.es.daw.dao.impl.ProfessorTurmaDAOImpl;
 import br.edu.ifpb.es.daw.dao.impl.TurmaDAOImpl;
+import br.edu.ifpb.es.daw.entities.Aluno;
 import br.edu.ifpb.es.daw.entities.Professor;
 import br.edu.ifpb.es.daw.entities.ProfessorTurma;
 import br.edu.ifpb.es.daw.entities.Turma;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,6 +21,7 @@ public class MenuCoordenador {
     private ProfessorDAO professorDAO = new ProfessorDAOImpl();
     private TurmaDAO turmaDAO = new TurmaDAOImpl();
     private ProfessorTurmaDAO professorTurmaDAO = new ProfessorTurmaDAOImpl();
+    private AlunoDAO alunoDAO = new AlunosDAOImpl();
 
     public void exibirMenu() {
         int opcao;
@@ -74,8 +75,53 @@ public class MenuCoordenador {
     }
 
     private void criarAluno() {
-        System.out.println("\n--- Criar Aluno ---");
-        // Implemente aqui conforme seu projeto
+        try {
+            System.out.println("\n--- Criar Aluno ---");
+
+
+            List<Turma> turmas = turmaDAO.getAll();
+            if (turmas.isEmpty()) {
+                System.out.println("Nenhuma turma cadastrada. Cadastre uma turma primeiro.");
+                return;
+            }
+
+            System.out.println("Turmas disponíveis:");
+            for (Turma t : turmas) {
+                System.out.println(t.getId() + " - " + t.getNome());
+            }
+
+
+            System.out.print("Digite o ID da turma para vincular o aluno: ");
+            Long turmaId = Long.parseLong(sc.nextLine());
+            Turma turma = turmaDAO.getByID(turmaId);
+
+            if (turma == null) {
+                System.out.println("Turma não encontrada.");
+                return;
+            }
+
+            Aluno aluno = new Aluno();
+
+            System.out.print("Nome: ");
+            aluno.setNome(sc.nextLine());
+
+            System.out.print("Data de Nascimento (AAAA-MM-DD): ");
+            aluno.setDataNascimento(LocalDate.parse(sc.nextLine()));
+
+            System.out.print("Matrícula: ");
+            aluno.setMatricula(sc.nextLine());
+
+            alunoDAO.save(aluno);
+
+            System.out.println("Aluno criado com sucesso! ID: " + aluno.getId());
+
+        } catch (PersistenciaDawException e) {
+            System.out.println("Erro ao criar aluno: " + e.getMessage());
+            e.printStackTrace();  // <- adiciona isso para ver detalhes do erro no console
+        } catch (Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+            e.printStackTrace();  // <- idem, para outros erros
+        }
     }
 
     private void criarTurma() {

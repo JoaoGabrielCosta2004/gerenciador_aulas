@@ -8,8 +8,17 @@ public class Aluno {
     private String nome;
     private String matricula;
     private LocalDate dataNascimento;
+    private Turma turma;
 
     public Aluno() {}
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
 
     public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento) {
         this.id = id;

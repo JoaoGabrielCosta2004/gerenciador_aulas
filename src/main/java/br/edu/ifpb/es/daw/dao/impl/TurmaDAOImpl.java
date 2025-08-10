@@ -1,14 +1,18 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
+import br.edu.ifpb.es.daw.Config;
 import br.edu.ifpb.es.daw.dao.TurmaDAO;
 import br.edu.ifpb.es.daw.entities.Turma;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TurmaDAOImpl extends AbstractDAOImpl<Turma, Long> implements TurmaDAO {
 
     public TurmaDAOImpl() {
-        super("turma"); // "turma" é o nome da tabela no banco de dados
+        super("turma");
     }
 
     @Override
@@ -35,10 +39,35 @@ public class TurmaDAOImpl extends AbstractDAOImpl<Turma, Long> implements TurmaD
     }
 
     @Override
+    public List<Turma> findAll() {
+        List<Turma> turmas = new ArrayList<>();
+        String sql = "SELECT id, nome FROM turma";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Turma turma = new Turma();
+                turma.setId(rs.getLong("id"));
+                turma.setNome(rs.getString("nome"));
+                turmas.add(turma);
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return turmas;
+    }
+
+    @Override
     protected Turma mapResultSetToEntity(ResultSet rs) throws SQLException {
         Long id = rs.getLong("id");
         String nome = rs.getString("nome");
         Integer ano = rs.getInt("ano");
         return new Turma(id, nome, ano);
     }
+
+
 }

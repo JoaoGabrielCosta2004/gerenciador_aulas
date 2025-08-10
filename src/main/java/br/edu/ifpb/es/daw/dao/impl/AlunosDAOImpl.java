@@ -14,7 +14,7 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
 
     @Override
     protected String getInsertSql(Aluno aluno) {
-        return "INSERT INTO aluno (nome, matricula, data_nascimento) VALUES (?, ?, ?)";
+        return "INSERT INTO aluno (nome, matricula, data_nascimento, turma_id) VALUES (?, ?, ?, ?)";
     }
 
     @Override
@@ -22,11 +22,17 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         ps.setString(1, aluno.getNome());
         ps.setString(2, aluno.getMatricula());
         ps.setDate(3, Date.valueOf(aluno.getDataNascimento()));
+
+        if (aluno.getTurma() != null && aluno.getTurma().getId() != null) {
+            ps.setLong(4, aluno.getTurma().getId());
+        } else {
+            ps.setNull(4, Types.BIGINT);
+        }
     }
 
     @Override
     protected String getUpdateSql(Aluno aluno) {
-        return "UPDATE aluno SET nome = ?, matricula = ?, data_nascimento = ? WHERE id = ?";
+        return "UPDATE aluno SET nome = ?, matricula = ?, data_nascimento = ?, turma_id = ? WHERE id = ?";
     }
 
     @Override
@@ -34,7 +40,14 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         ps.setString(1, aluno.getNome());
         ps.setString(2, aluno.getMatricula());
         ps.setDate(3, Date.valueOf(aluno.getDataNascimento()));
-        ps.setLong(4, aluno.getId());
+
+        if (aluno.getTurma() != null && aluno.getTurma().getId() != null) {
+            ps.setLong(4, aluno.getTurma().getId());
+        } else {
+            ps.setNull(4, Types.BIGINT);
+        }
+
+        ps.setLong(5, aluno.getId());
     }
 
     @Override
@@ -45,4 +58,5 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         LocalDate dataNascimento = rs.getDate("data_nascimento").toLocalDate();
         return new Aluno(id, nome, matricula, dataNascimento);
     }
+
 }

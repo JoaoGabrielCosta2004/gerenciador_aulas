@@ -123,7 +123,7 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 		return ps.executeQuery();
 	}
 
-	private Connection getConnection() throws IOException, SQLException{
+	protected Connection getConnection() throws IOException, SQLException{
 			Properties properties = Config.loadConfig();
 
 			String url = properties.getProperty("db.url");
