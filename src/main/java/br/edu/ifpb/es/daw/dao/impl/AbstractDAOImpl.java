@@ -1,6 +1,6 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
-import br.edu.ifpb.es.daw.Config;
+import br.edu.ifpb.es.daw.app.service.Conexao;
 import br.edu.ifpb.es.daw.dao.DAO;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 
@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 
@@ -124,12 +123,7 @@ public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 	}
 
 	protected Connection getConnection() throws IOException, SQLException{
-			Properties properties = Config.loadConfig();
-
-			String url = properties.getProperty("db.url");
-			String usuario = properties.getProperty("db.usuario");
-			String senha = properties.getProperty("db.senha");
-			return DriverManager.getConnection(url, usuario, senha);
+			return Conexao.getConexao();
 	}
 
 	@Override

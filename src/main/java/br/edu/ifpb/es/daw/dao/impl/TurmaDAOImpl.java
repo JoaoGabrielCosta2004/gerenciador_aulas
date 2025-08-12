@@ -1,6 +1,5 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
-import br.edu.ifpb.es.daw.Config;
 import br.edu.ifpb.es.daw.dao.TurmaDAO;
 import br.edu.ifpb.es.daw.entities.Turma;
 
