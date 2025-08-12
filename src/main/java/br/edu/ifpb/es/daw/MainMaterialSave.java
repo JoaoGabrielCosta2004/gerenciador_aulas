@@ -32,5 +32,6 @@ public class MainMaterialSave {
         dao.save(material);
 
         System.out.println("✅ Material salvo com sucesso!");
+
     }
 }

@@ -9,6 +9,7 @@ public class Material {
     private Boolean avaliacao;
 
     // Vai ter que mexer em material para adaptar pro formato que atenda o que precisa no MinIO
+    public Material(){this.avaliacao = false;}
 
     public Long getId() {
         return id;
@@ -50,13 +51,13 @@ public class Material {
         this.avaliacao = avaliacao;
     }
 
-    @Override
-    public String toString() {
-        return "Material{" +
-                "id=" + id +
-                ", tipo='" + tipo + '\'' +
-                ", titulo='" + titulo + '\'' +
-                ", link='" + link + '\'' +
-                '}';
-    }
+    // @Override
+    // public String toString() {
+    //     return "Material{" +
+    //             "id=" + id +
+    //             ", tipo='" + tipo + '\'' +
+    //             ", titulo='" + titulo + '\'' +
+    //             ", link='" + link + '\'' +
+    //             '}';
+    // }
 }

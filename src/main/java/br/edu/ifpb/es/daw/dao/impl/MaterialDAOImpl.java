@@ -13,7 +13,7 @@ public class MaterialDAOImpl extends AbstractDAOImpl<Material, Long> implements 
 
     @Override
     protected String getInsertSql(Material material) {
-        return "INSERT INTO material (tipo, titulo, link) VALUES (?, ?, ?)";
+        return "INSERT INTO material (tipo, titulo, link, avaliacao) VALUES (?, ?, ?, ?)";
     }
 
     @Override
@@ -21,11 +21,12 @@ public class MaterialDAOImpl extends AbstractDAOImpl<Material, Long> implements 
         ps.setString(1, material.getTipo());
         ps.setString(2, material.getTitulo());
         ps.setString(3, material.getLink());
+        ps.setBoolean(4, material.isAvaliacao());
     }
 
     @Override
     protected String getUpdateSql(Material material) {
-        return "UPDATE material SET tipo = ?, titulo = ?, link = ? WHERE id = ?";
+        return "UPDATE material SET tipo = ?, titulo = ?, link = ?, avaliacao = ? WHERE id = ?";
     }
 
     @Override
@@ -33,7 +34,9 @@ public class MaterialDAOImpl extends AbstractDAOImpl<Material, Long> implements 
         ps.setString(1, material.getTipo());
         ps.setString(2, material.getTitulo());
         ps.setString(3, material.getLink());
-        ps.setLong(4, material.getId());
+        ps.setBoolean(4, material.isAvaliacao());
+        ps.setLong(5, material.getId());
+        
     }
 
 
@@ -43,6 +46,7 @@ public class MaterialDAOImpl extends AbstractDAOImpl<Material, Long> implements 
         String tipo = rs.getString("tipo");
         String titulo = rs.getString("titulo");
         String link = rs.getString("link");
+        Boolean avaliacao = rs.getBoolean("avaliacao");
 
 
         Material material = new Material();
@@ -50,6 +54,7 @@ public class MaterialDAOImpl extends AbstractDAOImpl<Material, Long> implements 
         material.setTipo(tipo);
         material.setTitulo(titulo);
         material.setLink(link);
+        material.setAvaliacao(avaliacao);
 
         return material;
     }
