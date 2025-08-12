@@ -2,9 +2,11 @@ package br.edu.ifpb.es.daw.todo.service;
 
 import br.edu.ifpb.es.daw.todo.model.Aluno;
 import br.edu.ifpb.es.daw.todo.repository.AlunoRepository;
+import br.edu.ifpb.es.daw.todo.repository.TurmaRepository;
+import br.edu.ifpb.es.daw.todo.rest.dto.AlunoRequestDTO;
 import br.edu.ifpb.es.daw.todo.rest.dto.AlunoResponseDTO;
 import br.edu.ifpb.es.daw.todo.mapper.AlunoMapper;
-import br.edu.ifpb.es.daw.todo.rest.dto.AlunoSalvarRequestDTO;
+import br.edu.ifpb.es.daw.todo.rest.dto.AlunoRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,52 +17,49 @@ import java.util.Optional;
 @Service
 public class AlunoService {
 
-    private final AlunoRepository alunoRepository;
-    private final AlunoMapper alunoMapper;
+    private final AlunoRepository repository;
+    private final TurmaRepository turmaRepository;
+    private final AlunoMapper mapper;
 
-    @Autowired
-    public AlunoService(AlunoRepository alunoRepository, AlunoMapper alunoMapper) {
-        this.alunoRepository = alunoRepository;
-        this.alunoMapper = alunoMapper;
+    public AlunoService(AlunoRepository repository, TurmaRepository turmaRepository, AlunoMapper mapper) {
+        this.repository = repository;
+        this.turmaRepository = turmaRepository;
+        this.mapper = mapper;
     }
 
-    @Transactional
-    public AlunoResponseDTO salvar(AlunoSalvarRequestDTO dto) {
-        Aluno aluno = alunoMapper.from(dto);
-        Aluno alunoCriado = alunoRepository.save(aluno);
-        return alunoMapper.from(alunoCriado);
+    public AlunoResponseDTO salvar(AlunoRequestDTO dto) {
+        Aluno aluno = mapper.from(dto);
+        return mapper.from(repository.save(aluno));
     }
 
-    public List<AlunoResponseDTO> recuperarTodos() {
-        return alunoRepository.findAll()
+    public List<AlunoResponseDTO> listarTodos() {
+        return repository.findAll()
                 .stream()
-                .map(alunoMapper::from)
+                .map(mapper::from)
                 .toList();
     }
 
-    private Aluno ensureExists(Long id) {
-        Optional<Aluno> alunoOpt = alunoRepository.findById(id);
-        return alunoOpt.orElseThrow(() -> new IllegalArgumentException(String.format("Aluno com ID '%d' não encontrado", id)));
-    }
-
     public AlunoResponseDTO buscarPorId(Long id) {
-        Aluno aluno = ensureExists(id);
-        return alunoMapper.from(aluno);
+        return repository.findById(id)
+                .map(mapper::from)
+                .orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
     }
 
-    @Transactional
-    public AlunoResponseDTO atualizar(Long id, AlunoSalvarRequestDTO dto) {
-        Aluno alunoExistente = ensureExists(id);
-        alunoExistente.setNome(dto.getNome());
-        alunoExistente.setMatricula(dto.getMatricula());
-        alunoExistente.setEmail(dto.getEmail());
-        Aluno alunoAtualizado = alunoRepository.save(alunoExistente);
-        return alunoMapper.from(alunoAtualizado);
+    public AlunoResponseDTO atualizar(Long id, AlunoRequestDTO dto) {
+        Aluno aluno = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
+
+        aluno.setNome(dto.nome());
+        aluno.setMatricula(dto.matricula());
+        aluno.setEmail(dto.email());
+        aluno.setDataNascimento(dto.dataNascimento());
+        aluno.setTurma(turmaRepository.findById(dto.turmaId())
+                .orElseThrow(() -> new IllegalArgumentException("Turma não encontrada")));
+
+        return mapper.from(repository.save(aluno));
     }
 
-    @Transactional
     public void deletar(Long id) {
-        Optional<Aluno> alunoOpt = alunoRepository.findById(id);
-        alunoOpt.ifPresent(alunoRepository::delete);
+        repository.deleteById(id);
     }
 }

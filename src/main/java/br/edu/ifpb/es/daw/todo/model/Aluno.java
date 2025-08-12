@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -36,6 +37,13 @@ public class Aluno {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private LocalDate dataNascimento;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "turma_id", nullable = false)
+    private Turma turma;
 
     @PrePersist
     private void init() {
