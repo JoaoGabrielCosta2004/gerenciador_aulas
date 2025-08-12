@@ -10,6 +10,10 @@ import br.edu.ifpb.es.daw.entities.Professor;
 import br.edu.ifpb.es.daw.entities.ProfessorTurma;
 import br.edu.ifpb.es.daw.entities.Turma;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -32,6 +36,7 @@ public class MenuCoordenador {
             System.out.println("3 - Criar Turma");
             System.out.println("4 - Vincular professor a turma");
             System.out.println("5 - Desvincular professor de turma");
+            System.out.println("6 - Gerar Boletim da turma");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = Integer.parseInt(sc.nextLine());
@@ -42,10 +47,62 @@ public class MenuCoordenador {
                 case 3 -> criarTurma();
                 case 4 -> vincularProfessorATurma();
                 case 5 -> desvincularProfessorDeTurma();
+                case 6 -> gerarBoletimTurma();
                 case 0 -> System.out.println("Saindo do menu...");
                 default -> System.out.println("Opção inválida!");
             }
         } while (opcao != 0);
+    }
+
+    private void gerarBoletimTurma() {
+        try {
+            System.out.println("\n--- Gerar Boletim ---");
+
+            List<Turma> turmas = turmaDAO.getAll();
+            if (turmas.isEmpty()) {
+                System.out.println("Nenhuma turma cadastrada. Cadastre uma turma primeiro.");
+                return;
+            }
+
+            System.out.println("Turmas disponíveis:");
+            for (Turma t : turmas) {
+                System.out.println(t.getId() + " - " + t.getNome());
+            }
+
+            System.out.print("Digite o ID da turma para gerar o boletim: ");
+            Long turmaId = Long.parseLong(sc.nextLine());
+            Turma turma = turmaDAO.getByID(turmaId);
+
+            if (turma == null) {
+                System.out.println("Turma não encontrada.");
+                return;
+            }
+
+            Connection conn = Conexao.getConexao();
+
+            String sql = "SELECT * FROM mostrar_boletim_formatado_turma(?)";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setLong(1, turmaId);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    System.out.println("\n--- Boletim da Turma ---\n");
+                    while (rs.next()) {
+                        String linha = rs.getString("linha");
+                        System.out.println(linha);
+                    }
+                }
+            }
+
+        } catch (PersistenciaDawException e) {
+            System.out.println("Erro ao buscar turmas: " + e.getMessage());
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Erro ao executar a função no banco: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void criarProfessor() {
@@ -117,10 +174,10 @@ public class MenuCoordenador {
 
         } catch (PersistenciaDawException e) {
             System.out.println("Erro ao criar aluno: " + e.getMessage());
-            e.printStackTrace();  // <- adiciona isso para ver detalhes do erro no console
+            e.printStackTrace();
         } catch (Exception e) {
             System.out.println("Erro inesperado: " + e.getMessage());
-            e.printStackTrace();  // <- idem, para outros erros
+            e.printStackTrace();
         }
     }
 
