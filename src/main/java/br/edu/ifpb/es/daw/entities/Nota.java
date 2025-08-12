@@ -6,12 +6,16 @@ public class Nota {
     private String descricao;
     private Double valor;
 
+    private Integer id_material;
     private Integer id_aluno;
-
     private Integer id_disciplina;
 
-    public Nota(){
+    public Nota(){}
 
+    public Nota(Long id, String descricao, Double valor) {
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
     }
 
     public Integer getId_disciplina() {
@@ -30,21 +34,20 @@ public class Nota {
         this.id_aluno = id_aluno;
     }
 
-    public Nota(Long id, String descricao, Double valor) {
-        this.id = id;
-        this.descricao = descricao;
-        this.valor = valor;
-    }
-
     public Long getId() { return id; }
     public String getDescricao() { return descricao; }
     public Double getValor() { return valor; }
 
+    public Integer getId_material() {
+        return id_material;
+    }
+    public void setId_material(Integer id_material) {
+        this.id_material = id_material;
+    }
 
     public void setId(Long id) { this.id = id; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
     public void setValor(Double valor) { this.valor = valor; }
-
 
     @Override
     public String toString() {

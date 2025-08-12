@@ -12,10 +12,10 @@ public class MainMongoTeste {
         NotaBackupDAO bdJDBC = new NotaBackupDAOImpl();
         NotaBackupMongo dao = new NotaBackupMongo("escola", "notas_backup");
 
-        for (NotaBackup tab : bdJDBC.getAll()) {
-            dao.salvar(tab);
-        }
-        System.out.println("Todas as notas registradas");
+        // for (NotaBackup tab : bdJDBC.getAll()) {
+        //     dao.salvar(tab);
+        // }
+        // System.out.println("Todas as notas registradas");
 
         // Listagem em formato de tabela
         List<NotaBackup> notas = dao.listarTodas();

@@ -6,6 +6,9 @@ public class Material {
     private String tipo;
     private String titulo;
     private String link;
+    private Boolean avaliacao;
+
+    // Vai ter que mexer em material para adaptar pro formato que atenda o que precisa no MinIO
 
     public Long getId() {
         return id;
@@ -37,6 +40,14 @@ public class Material {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public Boolean isAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Boolean avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
     @Override

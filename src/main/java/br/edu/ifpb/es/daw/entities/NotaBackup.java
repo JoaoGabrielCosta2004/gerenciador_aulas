@@ -75,4 +75,10 @@ public class NotaBackup {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return "\nAluno: "+alunoNome+"\nMatrícula: "+alunoMatricula+"\nDisciplina: "+disciplinaNome+"\nNota: "+nota+"\n------------------------------------------------------------------------------";
+    }
 }
