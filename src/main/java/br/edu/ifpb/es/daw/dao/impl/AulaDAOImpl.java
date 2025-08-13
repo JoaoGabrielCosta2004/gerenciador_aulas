@@ -14,7 +14,7 @@ public class AulaDAOImpl extends AbstractDAOImpl<Aula, Long> implements AulaDAO 
 
     @Override
     protected String getInsertSql(Aula aula) {
-        return "INSERT INTO aula (quantidadefalta, data, conteudo) VALUES (?, ?, ?)";
+        return "INSERT INTO aula (quantidadefalta, data, conteudo, turma_id) VALUES (?, ?, ?, ?)";
     }
 
     @Override
@@ -22,6 +22,7 @@ public class AulaDAOImpl extends AbstractDAOImpl<Aula, Long> implements AulaDAO 
         ps.setInt(1, aula.getQuantidadeFalta());
         ps.setDate(2, Date.valueOf(aula.getData()));
         ps.setString(3, aula.getConteudo());
+        ps.setLong(4, aula.getId_turma());
     }
 
     @Override

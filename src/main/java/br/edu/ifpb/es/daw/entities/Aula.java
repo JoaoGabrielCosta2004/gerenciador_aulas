@@ -8,6 +8,7 @@ public class Aula {
     private Integer quantidadeFalta;
     private LocalDate data;
     private String conteudo;
+    private Long id_turma;
 
     public Aula() {}
 
@@ -38,6 +39,14 @@ public class Aula {
 
     public String getConteudo() {
         return conteudo;
+    }
+
+    public Long getId_turma() {
+        return id_turma;
+    }
+
+    public void setId_turma(Long id_turma) {
+        this.id_turma = id_turma;
     }
 
     public void setConteudo(String conteudo) {

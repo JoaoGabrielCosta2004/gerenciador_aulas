@@ -1,6 +1,8 @@
 package br.edu.ifpb.es.daw.app;
 
 import br.edu.ifpb.es.daw.app.service.MenuCoordenador;
+import br.edu.ifpb.es.daw.app.service.MenuProfessor;
+import br.edu.ifpb.es.daw.app.service.UsuarioLogado;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 import br.edu.ifpb.es.daw.app.service.LoginService;
 
@@ -19,17 +21,18 @@ public class MainLogin {
             System.out.print("Senha: ");
             String senha = sc.nextLine();
 
-            String tipoUsuario = loginService.login(email, senha);
+            UsuarioLogado usuario = loginService.login(email, senha);
 
-            if (tipoUsuario == null) {
+            if (usuario == null) {
                 System.out.println("❌ Login inválido!");
-            } else if (tipoUsuario.equals("COORDENADOR")) {
+            } else if (usuario.getTipo().equals("COORDENADOR")) {
                 System.out.println("✅ Login como Coordenador realizado com sucesso!");
                 MenuCoordenador menu = new MenuCoordenador();
                 menu.exibirMenu();
-            } else if (tipoUsuario.equals("PROFESSOR")) {
+            } else if (usuario.getTipo().equals("PROFESSOR")) {
                 System.out.println("✅ Login como Professor realizado com sucesso!");
-
+                MenuProfessor menu = new MenuProfessor(usuario.getId());
+                menu.exibirMenu();
             }
 
         } catch (PersistenciaDawException e) {

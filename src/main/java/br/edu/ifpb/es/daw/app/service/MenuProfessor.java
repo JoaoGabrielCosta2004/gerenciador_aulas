@@ -4,6 +4,12 @@ import java.util.Scanner;
 
 public class MenuProfessor {
     private Scanner sc = new Scanner(System.in);
+    private Long idProfessor;
+
+    public MenuProfessor(Long idProfessor) {
+        this.idProfessor = idProfessor;
+        System.out.println("Professor logado com ID: " + idProfessor);
+    }
 
     public void exibirMenu() {
         int opcao;
