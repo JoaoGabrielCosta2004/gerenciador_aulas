@@ -7,6 +7,7 @@ public class Material {
     private String titulo;
     private String link;
     private Boolean avaliacao;
+    private Long id_aula;
 
     // Vai ter que mexer em material para adaptar pro formato que atenda o que precisa no MinIO
     public Material(){this.avaliacao = false;}
@@ -25,6 +26,10 @@ public class Material {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public Boolean getAvaliacao() {
+        return avaliacao;
     }
 
     public String getTipo() {
@@ -51,7 +56,14 @@ public class Material {
         this.avaliacao = avaliacao;
     }
 
-    // @Override
+    public Long getId_aula() {
+        return id_aula;
+    }
+
+    public void setId_aula(Long id_aula) {
+        this.id_aula = id_aula;
+    }
+// @Override
     // public String toString() {
     //     return "Material{" +
     //             "id=" + id +

@@ -13,7 +13,7 @@ public class MaterialDAOImpl extends AbstractDAOImpl<Material, Long> implements 
 
     @Override
     protected String getInsertSql(Material material) {
-        return "INSERT INTO material (tipo, titulo, link, avaliacao) VALUES (?, ?, ?, ?)";
+        return "INSERT INTO material (tipo, titulo, link, avaliacao, aula_id) VALUES (?, ?, ?, ?, ?)";
     }
 
     @Override
@@ -22,6 +22,7 @@ public class MaterialDAOImpl extends AbstractDAOImpl<Material, Long> implements 
         ps.setString(2, material.getTitulo());
         ps.setString(3, material.getLink());
         ps.setBoolean(4, material.isAvaliacao());
+        ps.setLong(5, material.getId_aula());
     }
 
     @Override
