@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AulaRepository extends JpaRepository<Aula, Long> {
-    // Podemos adicionar métodos customizados se necessário
+    // Aqui você pode adicionar métodos customizados, se necessário
 }

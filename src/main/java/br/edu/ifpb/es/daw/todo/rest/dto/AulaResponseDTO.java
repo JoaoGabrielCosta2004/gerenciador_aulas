@@ -2,14 +2,16 @@ package br.edu.ifpb.es.daw.todo.rest.dto;
 
 import lombok.Builder;
 
+import java.time.LocalDate;
 import java.util.Set;
+import java.util.UUID;
 
 @Builder
 public record AulaResponseDTO(
         Long id,
-        String data,
         String conteudo,
+        LocalDate data,
         Integer quantidadeFalta,
-        Long professorId,
-        Set<Long> alunoIds
+        ProfessorResponseDTO professor,
+        Set<AlunoResponseDTO> alunos
 ) {}

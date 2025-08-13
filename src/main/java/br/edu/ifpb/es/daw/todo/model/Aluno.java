@@ -1,15 +1,10 @@
 package br.edu.ifpb.es.daw.todo.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
+import lombok.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -45,8 +40,17 @@ public class Aluno {
     @JoinColumn(name = "turma_id", nullable = false)
     private Turma turma;
 
+    @ManyToMany(mappedBy = "alunos")
+    private Set<Aula> aulas = new HashSet<>();
+
+
     @PrePersist
     private void init() {
         this.lookupId = UUID.randomUUID();
+    }
+
+    public void adicionarAula(Aula aula) {
+        this.aulas.add(aula);
+        aula.getAlunos().add(this);
     }
 }

@@ -1,29 +1,31 @@
 package br.edu.ifpb.es.daw.todo.service;
 
 import br.edu.ifpb.es.daw.todo.model.Aluno;
+import br.edu.ifpb.es.daw.todo.model.Aula;
 import br.edu.ifpb.es.daw.todo.repository.AlunoRepository;
+import br.edu.ifpb.es.daw.todo.repository.AulaRepository;
 import br.edu.ifpb.es.daw.todo.repository.TurmaRepository;
 import br.edu.ifpb.es.daw.todo.rest.dto.AlunoRequestDTO;
 import br.edu.ifpb.es.daw.todo.rest.dto.AlunoResponseDTO;
 import br.edu.ifpb.es.daw.todo.mapper.AlunoMapper;
-import br.edu.ifpb.es.daw.todo.rest.dto.AlunoRequestDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AlunoService {
 
     private final AlunoRepository repository;
     private final TurmaRepository turmaRepository;
+    private final AulaRepository aulaRepository;
     private final AlunoMapper mapper;
 
-    public AlunoService(AlunoRepository repository, TurmaRepository turmaRepository, AlunoMapper mapper) {
+    public AlunoService(AlunoRepository repository, TurmaRepository turmaRepository, AulaRepository aulaRepository, AlunoMapper mapper) {
         this.repository = repository;
         this.turmaRepository = turmaRepository;
+        this.aulaRepository = aulaRepository;
         this.mapper = mapper;
     }
 
@@ -55,6 +57,18 @@ public class AlunoService {
         aluno.setDataNascimento(dto.dataNascimento());
         aluno.setTurma(turmaRepository.findById(dto.turmaId())
                 .orElseThrow(() -> new IllegalArgumentException("Turma não encontrada")));
+
+        // Atualiza aulas
+        Set<Aula> aulas = new HashSet<>();
+        if (dto.aulaIds() != null) {
+            dto.aulaIds().forEach(aulaId -> {
+                Aula aula = aulaRepository.findById(aulaId)
+                        .orElseThrow(() -> new IllegalArgumentException("Aula não encontrada: " + aulaId));
+                aulas.add(aula);
+            });
+        }
+        aluno.setAulas(aulas);
+        aulas.forEach(aula -> aula.getAlunos().add(aluno));
 
         return mapper.from(repository.save(aluno));
     }

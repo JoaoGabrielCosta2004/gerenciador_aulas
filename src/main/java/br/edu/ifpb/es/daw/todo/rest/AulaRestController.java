@@ -3,7 +3,7 @@ package br.edu.ifpb.es.daw.todo.rest;
 import br.edu.ifpb.es.daw.todo.rest.dto.AulaRequestDTO;
 import br.edu.ifpb.es.daw.todo.rest.dto.AulaResponseDTO;
 import br.edu.ifpb.es.daw.todo.service.AulaService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,30 +12,36 @@ import java.util.List;
 @RequestMapping("/aulas")
 public class AulaRestController {
 
-    private final AulaService aulaService;
+    private final AulaService service;
 
-    public AulaRestController(AulaService aulaService) {
-        this.aulaService = aulaService;
+    public AulaRestController(AulaService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<AulaResponseDTO> criar(@RequestBody AulaRequestDTO dto) {
-        return ResponseEntity.ok(aulaService.criar(dto));
+    @ResponseStatus(HttpStatus.CREATED)
+    public AulaResponseDTO salvar(@RequestBody AulaRequestDTO dto) {
+        return service.salvar(dto);
     }
 
     @GetMapping
-    public ResponseEntity<List<AulaResponseDTO>> listarTodos() {
-        return ResponseEntity.ok(aulaService.listarTodos());
+    public List<AulaResponseDTO> listarTodos() {
+        return service.listarTodos();
+    }
+
+    @GetMapping("/{id}")
+    public AulaResponseDTO buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AulaResponseDTO> atualizar(@PathVariable Long id, @RequestBody AulaRequestDTO dto) {
-        return ResponseEntity.ok(aulaService.atualizar(id, dto));
+    public AulaResponseDTO atualizar(@PathVariable Long id, @RequestBody AulaRequestDTO dto) {
+        return service.atualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        aulaService.deletar(id);
-        return ResponseEntity.noContent().build();
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
     }
 }

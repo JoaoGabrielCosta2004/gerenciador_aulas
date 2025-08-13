@@ -1,11 +1,14 @@
 package br.edu.ifpb.es.daw.todo.rest.dto;
 
-import lombok.Builder;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Builder
+import java.time.LocalDate;
+import java.util.Set;
+
 public record AulaRequestDTO(
-        String data,          // formato dd/MM/yyyy
-        String conteudo,
-        Integer quantidadeFalta,
-        Long professorId
+        @NotBlank String conteudo,
+        @NotNull LocalDate data,
+        @NotNull Long professorId,
+        Set<Long> alunoIds // IDs dos alunos
 ) {}
