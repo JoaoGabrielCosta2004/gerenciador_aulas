@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class AbstractDAOImpl<E, T> implements DAO<E, T> {
 
-	private Connection connection;
+	protected Connection connection;
 	private String tableName;
 
 	public AbstractDAOImpl(String tableName) {

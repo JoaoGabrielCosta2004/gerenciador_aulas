@@ -8,16 +8,16 @@ public class Aluno {
     private String nome;
     private String matricula;
     private LocalDate dataNascimento;
-    private Turma turma;
+    private Long id_turma;
 
     public Aluno() {}
 
-    public Turma getTurma() {
-        return turma;
+    public Long getId_turma() {
+        return id_turma;
     }
 
-    public void setTurma(Turma turma) {
-        this.turma = turma;
+    public void setId_turma(Long id_turma) {
+        this.id_turma = id_turma;
     }
 
     public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento) {

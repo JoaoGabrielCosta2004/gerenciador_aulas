@@ -1,10 +1,14 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
+import br.edu.ifpb.es.daw.app.service.Conexao;
 import br.edu.ifpb.es.daw.dao.AlunoDAO;
+import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 import br.edu.ifpb.es.daw.entities.Aluno;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements AlunoDAO {
 
@@ -23,11 +27,11 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         ps.setString(2, aluno.getMatricula());
         ps.setDate(3, Date.valueOf(aluno.getDataNascimento()));
 
-        if (aluno.getTurma() != null && aluno.getTurma().getId() != null) {
+        /*if (aluno.getTurma() != null && aluno.getTurma().getId() != null) {
             ps.setLong(4, aluno.getTurma().getId());
         } else {
             ps.setNull(4, Types.BIGINT);
-        }
+        }*/
     }
 
     @Override
@@ -41,13 +45,13 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         ps.setString(2, aluno.getMatricula());
         ps.setDate(3, Date.valueOf(aluno.getDataNascimento()));
 
-        if (aluno.getTurma() != null && aluno.getTurma().getId() != null) {
+        /*if (aluno.getTurma() != null && aluno.getTurma().getId() != null) {
             ps.setLong(4, aluno.getTurma().getId());
         } else {
             ps.setNull(4, Types.BIGINT);
         }
 
-        ps.setLong(5, aluno.getId());
+        ps.setLong(5, aluno.getId());*/
     }
 
     @Override
@@ -57,6 +61,32 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         String matricula = rs.getString("matricula");
         LocalDate dataNascimento = rs.getDate("data_nascimento").toLocalDate();
         return new Aluno(id, nome, matricula, dataNascimento);
+    }
+
+    @Override
+    public List<Aluno> buscarPorTurma(Long idTurma) throws PersistenciaDawException {
+        List<Aluno> alunos = new ArrayList<>();
+        String sql = "SELECT * FROM aluno WHERE turma_id = ?";
+
+        try (PreparedStatement ps = Conexao.getConexao().prepareStatement(sql)) {
+            ps.setLong(1, idTurma);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Aluno aluno = new Aluno();
+                    aluno.setId(rs.getLong("id"));
+                    aluno.setNome(rs.getString("nome"));
+                    aluno.setMatricula(rs.getString("matricula"));
+                    aluno.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+                    aluno.setId_turma(rs.getLong("turma_id"));
+                    alunos.add(aluno);
+                }
+            }
+        } catch (Exception e) {
+            throw new PersistenciaDawException("Erro ao buscar alunos da turma", e);
+        }
+
+        return alunos;
     }
 
 }

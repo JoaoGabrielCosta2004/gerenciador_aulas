@@ -1,5 +1,6 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
+import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 import br.edu.ifpb.es.daw.dao.TurmaDAO;
 import br.edu.ifpb.es.daw.entities.Turma;
 
@@ -38,26 +39,22 @@ public class TurmaDAOImpl extends AbstractDAOImpl<Turma, Long> implements TurmaD
     }
 
     @Override
-    public List<Turma> findAll() {
-        List<Turma> turmas = new ArrayList<>();
-        String sql = "SELECT id, nome FROM turma";
-
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Turma turma = new Turma();
-                turma.setId(rs.getLong("id"));
-                turma.setNome(rs.getString("nome"));
-                turmas.add(turma);
+    public Turma findById(Long id) throws PersistenciaDawException {
+        String sql = "SELECT * FROM turma WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Turma t = new Turma();
+                    t.setId(rs.getLong("id"));
+                    t.setNome(rs.getString("nome"));
+                    return t;
+                }
             }
-
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new PersistenciaDawException("Erro ao buscar turma por ID", e);
         }
-
-        return turmas;
+        return null;
     }
 
     @Override

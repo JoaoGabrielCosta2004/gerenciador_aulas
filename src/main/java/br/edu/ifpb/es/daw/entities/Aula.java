@@ -9,6 +9,7 @@ public class Aula {
     private LocalDate data;
     private String conteudo;
     private Long id_turma;
+    private Long idProfessor;
 
     public Aula() {}
 
@@ -62,4 +63,12 @@ public class Aula {
                 ", conteudo='" + conteudo + '\'' +
                 '}';
     }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public Long getIdProfessor() { return idProfessor; }
+
+    public void setIdProfessor(Long idProfessor) { this.idProfessor = idProfessor; }
 }
