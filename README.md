@@ -41,3 +41,11 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
   ## Casos de uso
   ![Image](https://github.com/user-attachments/assets/2b12fb7e-043c-4e6b-b235-d0b0bebb8700)
+
+
+  ## Diagrama de atividade
+  <img width="810" height="600" alt="Image" src="https://github.com/user-attachments/assets/e1b49107-b75e-434e-a464-da3b2a977e4a" />
+
+
+  ## Diagrama de sequência
+  <img width="2324" height="1658" alt="Image" src="https://github.com/user-attachments/assets/b7a6f252-9908-43d0-b96c-37104c1a454d" />
