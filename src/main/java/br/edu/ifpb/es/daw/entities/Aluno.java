@@ -20,11 +20,12 @@ public class Aluno {
         this.id_turma = id_turma;
     }
 
-    public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento) {
+    public Aluno(Long id, String nome, String matricula, LocalDate dataNascimento, Long id_turma) {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
         this.dataNascimento = dataNascimento;
+        this.id_turma = id_turma;
     }
 
     public Long getId() {

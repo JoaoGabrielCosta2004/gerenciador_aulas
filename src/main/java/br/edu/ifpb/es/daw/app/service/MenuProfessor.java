@@ -84,7 +84,7 @@ public class MenuProfessor {
             aula.setIdProfessor(idProfessor); // registrar professor
 
             // Perguntar quantidade mínima de falta
-            System.out.print("Digite a quantidade maxima de falta para esta aula: ");
+            System.out.print("Digite a carga horaria para esta aula: ");
             int qtdFalta = Integer.parseInt(sc.nextLine());
             aula.setQuantidadeFalta(qtdFalta);
 
@@ -110,24 +110,20 @@ public class MenuProfessor {
 
     private void registrarFrequenciaPorAula(Long idProfessor) {
         try {
-            // 1. Buscar todas as aulas do professor
             List<Aula> aulas = aulaDAO.buscarPorProfessor(idProfessor);
             if (aulas.isEmpty()) {
                 System.out.println("Nenhuma aula registrada para este professor.");
                 return;
             }
 
-            // 2. Mostrar lista de aulas
             System.out.println("Aulas registradas:");
             for (Aula a : aulas) {
                 System.out.println(a.getId() + " - Data: " + a.getData() + ", Turma ID: " + a.getId_turma() + ", Conteúdo: " + a.getConteudo());
             }
 
-            // 3. Escolher aula
             System.out.print("Digite o ID da aula para registrar a frequência: ");
             Long aulaId = Long.parseLong(sc.nextLine());
 
-            // 4. Buscar a aula escolhida
             Aula aulaEscolhida = null;
             for (Aula a : aulas) {
                 if (a.getId().equals(aulaId)) {
@@ -143,7 +139,6 @@ public class MenuProfessor {
 
             Long turmaId = aulaEscolhida.getId_turma();
 
-            // 5. Buscar alunos da turma
             List<Aluno> alunos = alunoDAO.buscarPorTurma(turmaId);
             if (alunos.isEmpty()) {
                 System.out.println("Nenhum aluno encontrado para esta turma.");
@@ -155,7 +150,6 @@ public class MenuProfessor {
                 System.out.println(a.getId() + " - " + a.getNome());
             }
 
-            // 6. Registrar faltas
             System.out.println("Digite as faltas no formato idAluno/qtdFaltas separados por espaço:");
             String entrada = sc.nextLine(); // ex: "1/2 3/1 4/0"
             String[] registros = entrada.split(" ");
@@ -173,6 +167,11 @@ public class MenuProfessor {
 
                     if (faltas < 0) {
                         System.out.println("Faltas não podem ser negativas. Ignorado para aluno " + alunoId);
+                        continue;
+                    }
+
+                    if(faltas > aulaEscolhida.getQuantidadeFalta()){
+                        System.out.println("Faltas não podem ser maior que a quantidade maxima. Ignorado para aluno " + alunoId);
                         continue;
                     }
 

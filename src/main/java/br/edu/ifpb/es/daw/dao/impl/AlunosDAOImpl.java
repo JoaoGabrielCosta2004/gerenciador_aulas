@@ -27,11 +27,11 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         ps.setString(2, aluno.getMatricula());
         ps.setDate(3, Date.valueOf(aluno.getDataNascimento()));
 
-        /*if (aluno.getTurma() != null && aluno.getTurma().getId() != null) {
-            ps.setLong(4, aluno.getTurma().getId());
+        if (aluno.getId_turma() != null) {
+            ps.setLong(4, aluno.getId_turma());
         } else {
             ps.setNull(4, Types.BIGINT);
-        }*/
+        }
     }
 
     @Override
@@ -45,13 +45,13 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         ps.setString(2, aluno.getMatricula());
         ps.setDate(3, Date.valueOf(aluno.getDataNascimento()));
 
-        /*if (aluno.getTurma() != null && aluno.getTurma().getId() != null) {
-            ps.setLong(4, aluno.getTurma().getId());
+        if (aluno.getId_turma() != null ) {
+            ps.setLong(4, aluno.getId_turma());
         } else {
             ps.setNull(4, Types.BIGINT);
         }
 
-        ps.setLong(5, aluno.getId());*/
+        ps.setLong(5, aluno.getId());
     }
 
     @Override
@@ -60,7 +60,8 @@ public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements Aluno
         String nome = rs.getString("nome");
         String matricula = rs.getString("matricula");
         LocalDate dataNascimento = rs.getDate("data_nascimento").toLocalDate();
-        return new Aluno(id, nome, matricula, dataNascimento);
+        Long turmaId = rs.getObject("turma_id", Long.class);
+        return new Aluno(id, nome, matricula, dataNascimento, turmaId);
     }
 
     @Override

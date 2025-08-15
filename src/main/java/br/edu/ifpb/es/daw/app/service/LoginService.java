@@ -16,6 +16,7 @@ public class LoginService {
         if (coordEmail != null && coordSenha != null) {
             if (coordEmail.equals(email) && coordSenha.equals(senha)) {
                 return new UsuarioLogado(null, "COORDENADOR");
+
             }
         }
 

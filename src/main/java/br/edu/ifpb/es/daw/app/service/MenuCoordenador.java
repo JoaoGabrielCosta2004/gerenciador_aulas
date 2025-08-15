@@ -213,6 +213,8 @@ public class MenuCoordenador {
             System.out.print("Matrícula: ");
             aluno.setMatricula(sc.nextLine());
 
+            aluno.setId_turma(turmaId);
+
             alunoDAO.save(aluno);
 
             System.out.println("Aluno criado com sucesso! ID: " + aluno.getId());
