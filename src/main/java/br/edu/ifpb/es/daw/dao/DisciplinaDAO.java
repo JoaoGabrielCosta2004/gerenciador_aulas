@@ -2,6 +2,8 @@ package br.edu.ifpb.es.daw.dao;
 
 import br.edu.ifpb.es.daw.entities.Disciplina;
 
-public interface DisciplinaDAO extends DAO<Disciplina, Long> {
+import java.util.List;
 
+public interface DisciplinaDAO extends DAO<Disciplina, Long> {
+    public void linkProfessorDisciplina(Long professorId, Long disciplinaId) throws PersistenciaDawException;
 }

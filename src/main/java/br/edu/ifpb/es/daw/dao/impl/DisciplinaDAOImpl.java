@@ -1,9 +1,11 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
 import br.edu.ifpb.es.daw.dao.DisciplinaDAO;
+import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 import br.edu.ifpb.es.daw.entities.Disciplina;
 
 import java.sql.*;
+import java.util.List;
 
 public class DisciplinaDAOImpl extends AbstractDAOImpl<Disciplina, Long> implements DisciplinaDAO {
 
@@ -42,5 +44,23 @@ public class DisciplinaDAOImpl extends AbstractDAOImpl<Disciplina, Long> impleme
         disciplina.setNome(nome);
 
         return disciplina;
+    }
+
+    @Override
+    public List<Disciplina> getAll() throws PersistenciaDawException {
+        return super.getAll();
+    }
+
+    @Override
+    public void linkProfessorDisciplina(Long professorId, Long disciplinaId) throws PersistenciaDawException {
+        String sql = "INSERT INTO professor_disciplina (professor_id, disciplina_id) VALUES (?, ?)";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setLong(1, professorId);
+            ps.setLong(2, disciplinaId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new PersistenciaDawException("Erro ao vincular professor à disciplina", e);
+        }
     }
 }

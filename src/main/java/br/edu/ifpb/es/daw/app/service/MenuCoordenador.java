@@ -1,14 +1,8 @@
 package br.edu.ifpb.es.daw.app.service;
 
 import br.edu.ifpb.es.daw.dao.*;
-import br.edu.ifpb.es.daw.dao.impl.AlunosDAOImpl;
-import br.edu.ifpb.es.daw.dao.impl.ProfessorDAOImpl;
-import br.edu.ifpb.es.daw.dao.impl.ProfessorTurmaDAOImpl;
-import br.edu.ifpb.es.daw.dao.impl.TurmaDAOImpl;
-import br.edu.ifpb.es.daw.entities.Aluno;
-import br.edu.ifpb.es.daw.entities.Professor;
-import br.edu.ifpb.es.daw.entities.ProfessorTurma;
-import br.edu.ifpb.es.daw.entities.Turma;
+import br.edu.ifpb.es.daw.dao.impl.*;
+import br.edu.ifpb.es.daw.entities.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +20,7 @@ public class MenuCoordenador {
     private TurmaDAO turmaDAO = new TurmaDAOImpl();
     private ProfessorTurmaDAO professorTurmaDAO = new ProfessorTurmaDAOImpl();
     private AlunoDAO alunoDAO = new AlunosDAOImpl();
+    private DisciplinaDAO disciplinaDAO = new DisciplinaDAOImpl();
 
     public void exibirMenu() {
         int opcao;
@@ -34,9 +29,10 @@ public class MenuCoordenador {
             System.out.println("1 - Criar Professor");
             System.out.println("2 - Criar Aluno");
             System.out.println("3 - Criar Turma");
-            System.out.println("4 - Vincular professor a turma");
-            System.out.println("5 - Desvincular professor de turma");
-            System.out.println("6 - Gerar Boletim da turma");
+            System.out.println("4 - Vincular professor a disciplina");
+            System.out.println("5 - Vincular professor a turma");
+            System.out.println("6 - Desvincular professor de turma");
+            System.out.println("7 - Gerar Boletim da turma");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = Integer.parseInt(sc.nextLine());
@@ -45,13 +41,60 @@ public class MenuCoordenador {
                 case 1 -> criarProfessor();
                 case 2 -> criarAluno();
                 case 3 -> criarTurma();
-                case 4 -> vincularProfessorATurma();
-                case 5 -> desvincularProfessorDeTurma();
-                case 6 -> gerarBoletimTurma();
+                case 4 -> vincularProfessorADisciplina();
+                case 5 -> vincularProfessorATurma();
+                case 6 -> desvincularProfessorDeTurma();
+                case 7 -> gerarBoletimTurma();
                 case 0 -> System.out.println("Saindo do menu...");
                 default -> System.out.println("Opção inválida!");
             }
         } while (opcao != 0);
+    }
+
+    private void vincularProfessorADisciplina() {
+        try {
+            // 1️⃣ Listar todos os professores
+            List<Professor> professores = professorDAO.getAll();
+            if (professores.isEmpty()) {
+                System.out.println("Não há professores cadastrados.");
+                return;
+            }
+
+            System.out.println("Professores disponíveis:");
+            for (Professor p : professores) {
+                System.out.println(p.getId() + " - " + p.getNome());
+            }
+
+            // 2️⃣ Escolher professor
+            System.out.print("Digite o ID do professor: ");
+            Long professorId = Long.parseLong(sc.nextLine());
+
+            // 3️⃣ Listar todas as disciplinas
+            List<Disciplina> disciplinas = disciplinaDAO.getAll();
+            if (disciplinas.isEmpty()) {
+                System.out.println("Não há disciplinas cadastradas.");
+                return;
+            }
+
+            System.out.println("Disciplinas disponíveis:");
+            for (Disciplina d : disciplinas) {
+                System.out.println(d.getId() + " - " + d.getNome());
+            }
+
+            // 4️⃣ Escolher disciplina
+            System.out.print("Digite o ID da disciplina: ");
+            Long disciplinaId = Long.parseLong(sc.nextLine());
+
+            // 5️⃣ Vincular
+            disciplinaDAO.linkProfessorDisciplina(professorId, disciplinaId);
+
+            System.out.println("✅ Professor vinculado à disciplina com sucesso!");
+
+        } catch (PersistenciaDawException e) {
+            System.out.println("Erro ao vincular professor à disciplina: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("ID inválido. Digite apenas números.");
+        }
     }
 
     private void gerarBoletimTurma() {
@@ -130,6 +173,8 @@ public class MenuCoordenador {
             System.out.println("Erro ao criar professor: " + e.getMessage());
         }
     }
+
+
 
     private void criarAluno() {
         try {

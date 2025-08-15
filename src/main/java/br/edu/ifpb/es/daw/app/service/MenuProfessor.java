@@ -84,7 +84,7 @@ public class MenuProfessor {
             aula.setIdProfessor(idProfessor); // registrar professor
 
             // Perguntar quantidade mínima de falta
-            System.out.print("Digite a quantidade mínima de falta para esta aula: ");
+            System.out.print("Digite a quantidade maxima de falta para esta aula: ");
             int qtdFalta = Integer.parseInt(sc.nextLine());
             aula.setQuantidadeFalta(qtdFalta);
 
