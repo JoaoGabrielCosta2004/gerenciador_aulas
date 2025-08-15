@@ -2,11 +2,11 @@ package br.edu.ifpb.es.daw.app.service;
 
 import br.edu.ifpb.es.daw.dao.*;
 import br.edu.ifpb.es.daw.dao.impl.*;
-import br.edu.ifpb.es.daw.entities.Aluno;
-import br.edu.ifpb.es.daw.entities.Aula;
-import br.edu.ifpb.es.daw.entities.ProfessorTurma;
-import br.edu.ifpb.es.daw.entities.Turma;
+import br.edu.ifpb.es.daw.entities.*;
+import br.edu.ifpb.es.daw.service.MinioService;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +22,8 @@ public class MenuProfessor {
     private AlunoDAO alunoDAO = new AlunosDAOImpl();
     private TurmaDAO turmaDAO = new TurmaDAOImpl();
     private AlunoAulaDAO alunosAulaDAO = new AlunoAulaDAOImpl();
+    private MaterialDAO materialDAO = new MaterialDAOImpl();
+    private MinioService minioService = new MinioService();
 
     public MenuProfessor(Long idProfessor) {
         this.idProfessor = idProfessor;
@@ -41,7 +43,7 @@ public class MenuProfessor {
             opcao = Integer.parseInt(sc.nextLine());
 
             switch (opcao) {
-                case 1 -> fazerUploadMaterial();
+                case 1 -> fazerUploadMaterial(idProfessor);
                 case 2 -> registrarAula(idProfessor);
                 case 3 -> registrarFrequenciaPorAula(idProfessor);
                 case 4 -> gerenciarNotas();
@@ -53,13 +55,12 @@ public class MenuProfessor {
 
     private void registrarAula(Long idProfessor) {
         try {
-            // 1. Buscar associações professor-turma
             List<ProfessorTurma> profTurmas = professorTurmaDAO.findByProfessorId(idProfessor);
 
-            // 2. Transformar em lista de Turma
+
             List<Turma> turmas = new ArrayList<>();
             for (ProfessorTurma pt : profTurmas) {
-                Turma t = turmaDAO.findById(pt.getTurmaId()); // buscar turma real
+                Turma t = turmaDAO.findById(pt.getTurmaId());
                 if (t != null) turmas.add(t);
             }
 
@@ -68,38 +69,31 @@ public class MenuProfessor {
                 return;
             }
 
-            // 3. Mostrar turmas
             System.out.println("Turmas disponíveis:");
             for (Turma t : turmas) {
                 System.out.println(t.getId() + " - " + t.getNome());
             }
 
-            // 4. Escolher turma
             System.out.print("Digite o ID da turma para registrar a aula: ");
             Long turmaId = Long.parseLong(sc.nextLine());
 
-            // 5. Criar aula
             Aula aula = new Aula();
             aula.setId_turma(turmaId);
-            aula.setIdProfessor(idProfessor); // registrar professor
+            aula.setIdProfessor(idProfessor);
 
-            // Perguntar quantidade mínima de falta
             System.out.print("Digite a carga horaria para esta aula: ");
             int qtdFalta = Integer.parseInt(sc.nextLine());
             aula.setQuantidadeFalta(qtdFalta);
 
-            // Perguntar data da aula
             System.out.print("Digite a data da aula (dd/MM/yyyy): ");
             String dataStr = sc.nextLine();
             aula.setData(dataStr);
 
-            // Perguntar conteúdo
             System.out.print("Digite o conteúdo da aula: ");
             aula.setConteudo(sc.nextLine());
 
-            // 6. Salvar aula e obter ID
             Long aulaId = aulaDAO.saveAndReturnId(aula);
-            System.out.println("✅ Aula registrada com sucesso! ID: " + aulaId);
+            System.out.println("Aula registrada com sucesso!");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -197,9 +191,74 @@ public class MenuProfessor {
 
 
 
-    private void fazerUploadMaterial() {
+    private void fazerUploadMaterial(Long idProfessor) {
+        try {
+            System.out.println("=== Upload de Material ===");
 
+            List<Aula> aulasProfessor = aulaDAO.buscarPorProfessor(idProfessor);
+            if (aulasProfessor.isEmpty()) {
+                System.out.println("Você não possui aulas cadastradas.");
+                return;
+            }
+
+            System.out.println("Aulas disponíveis:");
+            for (int i = 0; i < aulasProfessor.size(); i++) {
+                Aula aula = aulasProfessor.get(i);
+                System.out.printf("%d - %s (ID: %d)%n", i + 1, aula.getConteudo(), aula.getId());
+            }
+
+            System.out.print("Escolha o número da aula: ");
+            int escolhaAula = Integer.parseInt(sc.nextLine()) - 1;
+            if (escolhaAula < 0 || escolhaAula >= aulasProfessor.size()) {
+                System.out.println("Opção inválida.");
+                return;
+            }
+            Aula aulaEscolhida = aulasProfessor.get(escolhaAula);
+
+            System.out.print("Título do material: ");
+            String titulo = sc.nextLine();
+
+            System.out.print("Tipo do material: ");
+            String tipo = sc.nextLine();
+
+            System.out.print("É uma avaliação? (S/N): ");
+            boolean avaliacao = sc.nextLine().trim().equalsIgnoreCase("S");
+
+            System.out.print("Digite o caminho do arquivo para upload: ");
+            String caminhoArquivo = sc.nextLine();
+            File arquivo = new File(caminhoArquivo);
+
+            if (!arquivo.exists() || !arquivo.isFile()) {
+                System.out.println("Arquivo não encontrado!");
+                return;
+            }
+
+            String nomeArquivo = arquivo.getName();
+
+            try (FileInputStream fis = new FileInputStream(arquivo)) {
+                minioService.uploadFile(fis, nomeArquivo, arquivo.length());
+            }
+
+            String urlCompartilhamento = minioService.getPresignedUrl(nomeArquivo);
+
+            Material material = new Material();
+            material.setTitulo(titulo);
+            material.setTipo(tipo);
+            material.setId_aula(aulaEscolhida.getId());
+            material.setAvaliacao(avaliacao);
+            material.setLink(urlCompartilhamento);
+
+            materialDAO.save(material);
+
+            System.out.println("✅ Material salvo com sucesso!");
+            System.out.println("📎 Link de acesso: " + urlCompartilhamento);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erro ao fazer upload do material: " + e.getMessage());
+        }
     }
-
 }
+
+
 
