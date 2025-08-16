@@ -32,7 +32,7 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
 
   ## Diagrama de Classes UML
-  ![Image](https://github.com/user-attachments/assets/6cc7173d-0873-47e3-8514-8e558ec7c166)
+  <img width="5942" height="4342" alt="Image" src="https://github.com/user-attachments/assets/2c946d28-a8ab-49af-9558-a728476a79c7" />
 
   
   ## Fluxograma
@@ -40,7 +40,7 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
 
   ## Casos de uso
-  ![Image](https://github.com/user-attachments/assets/2b12fb7e-043c-4e6b-b235-d0b0bebb8700)
+  <img width="4538" height="3308" alt="Image" src="https://github.com/user-attachments/assets/d51be080-2c07-4070-ae77-0670be951ecf" />
 
 
   ## Diagrama de atividade
