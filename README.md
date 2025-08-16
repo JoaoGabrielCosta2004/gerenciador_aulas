@@ -44,8 +44,8 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
 
   ## Diagrama de atividade
-  <img width="810" height="600" alt="Image" src="https://github.com/user-attachments/assets/e1b49107-b75e-434e-a464-da3b2a977e4a" />
+  <img width="2640" height="2020" alt="Image" src="https://github.com/user-attachments/assets/32fa8e18-a158-4c30-8c27-733b6d97ce7c" />
 
 
   ## Diagrama de sequência
-  <img width="2324" height="1658" alt="Image" src="https://github.com/user-attachments/assets/b7a6f252-9908-43d0-b96c-37104c1a454d" />
+  <img width="798" height="680" alt="Image" src="https://github.com/user-attachments/assets/81df7199-1637-4e7b-9307-7a5849b4aa21" />
