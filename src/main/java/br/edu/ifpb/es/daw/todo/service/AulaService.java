@@ -5,6 +5,9 @@ import br.edu.ifpb.es.daw.todo.repository.AulaRepository;
 import br.edu.ifpb.es.daw.todo.rest.dto.AulaRequestDTO;
 import br.edu.ifpb.es.daw.todo.rest.dto.AulaResponseDTO;
 import br.edu.ifpb.es.daw.todo.mapper.AulaMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +33,17 @@ public class AulaService {
                 .map(mapper::from)
                 .toList();
     }
+    // PAGINAÇÃO
+    public Page<AulaResponseDTO> listarPaginado(Pageable pageable) {
+        return repository.findAll(pageable).map(mapper::from);
+    }
+
+    // FILTRAGEM
+    public Page<AulaResponseDTO> filtrarPorConteudo(String conteudo, Pageable pageable) {
+        return repository.findByConteudoContainingIgnoreCase(conteudo, pageable)
+                .map(mapper::from);
+    }
+
 
     public AulaResponseDTO buscarPorId(Long id) {
         return repository.findById(id)

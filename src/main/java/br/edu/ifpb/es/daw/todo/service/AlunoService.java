@@ -8,6 +8,8 @@ import br.edu.ifpb.es.daw.todo.repository.TurmaRepository;
 import br.edu.ifpb.es.daw.todo.rest.dto.AlunoRequestDTO;
 import br.edu.ifpb.es.daw.todo.rest.dto.AlunoResponseDTO;
 import br.edu.ifpb.es.daw.todo.mapper.AlunoMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -40,6 +42,21 @@ public class AlunoService {
                 .map(mapper::from)
                 .toList();
     }
+    public Page<AlunoResponseDTO> listarPaginado(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(mapper::from); // usa o AlunoMapper
+    }
+
+    public Page<AlunoResponseDTO> filtrarPorNome(String nome, Pageable pageable) {
+        return repository.findByNomeContainingIgnoreCase(nome, pageable)
+                .map(mapper::from); // usa o AlunoMapper
+    }
+
+    public Page<AlunoResponseDTO> filtrarPorEmail(String email, Pageable pageable) {
+        return repository.findByEmailContainingIgnoreCase(email, pageable)
+                .map(mapper::from); // usa o AlunoMapper
+    }
+
 
     public AlunoResponseDTO buscarPorId(Long id) {
         return repository.findById(id)
