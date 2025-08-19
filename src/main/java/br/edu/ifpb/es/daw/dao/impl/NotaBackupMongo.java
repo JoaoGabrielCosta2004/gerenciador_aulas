@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//Encontrar um jeito de implementar os métodos dessa classe no NotaBackupDAOImpl!!!!
 public class NotaBackupMongo {
     private final MongoCollection<Document> collection;
 

@@ -9,7 +9,6 @@ public class Material {
     private Boolean avaliacao;
     private Long id_aula;
 
-    // Vai ter que mexer em material para adaptar pro formato que atenda o que precisa no MinIO
     public Material(){this.avaliacao = false;}
 
     public Long getId() {

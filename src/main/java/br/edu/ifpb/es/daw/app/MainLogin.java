@@ -24,13 +24,13 @@ public class MainLogin {
             UsuarioLogado usuario = loginService.login(email, senha);
 
             if (usuario == null) {
-                System.out.println("❌ Login inválido!");
+                System.out.println("Login inválido!");
             } else if (usuario.getTipo().equals("COORDENADOR")) {
-                System.out.println("✅ Login como Coordenador realizado com sucesso!");
+                System.out.println("Login como Coordenador realizado com sucesso!");
                 MenuCoordenador menu = new MenuCoordenador();
                 menu.exibirMenu();
             } else if (usuario.getTipo().equals("PROFESSOR")) {
-                System.out.println("✅ Login como Professor realizado com sucesso!");
+                System.out.println("Login como Professor realizado com sucesso!");
                 MenuProfessor menu = new MenuProfessor(usuario.getId());
                 menu.exibirMenu();
             }

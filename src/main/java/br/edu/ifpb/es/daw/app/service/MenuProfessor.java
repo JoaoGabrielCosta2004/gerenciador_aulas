@@ -7,8 +7,6 @@ import br.edu.ifpb.es.daw.service.MinioService;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -176,7 +174,7 @@ public class MenuProfessor {
                 }
             }
 
-            System.out.println("✅ Frequência registrada com sucesso!");
+            System.out.println("Frequência registrada com sucesso!");
 
         } catch (Exception e) {
             e.printStackTrace();

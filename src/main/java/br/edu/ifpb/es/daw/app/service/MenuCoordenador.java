@@ -53,7 +53,6 @@ public class MenuCoordenador {
 
     private void vincularProfessorADisciplina() {
         try {
-            // 1️⃣ Listar todos os professores
             List<Professor> professores = professorDAO.getAll();
             if (professores.isEmpty()) {
                 System.out.println("Não há professores cadastrados.");
@@ -65,11 +64,9 @@ public class MenuCoordenador {
                 System.out.println(p.getId() + " - " + p.getNome());
             }
 
-            // 2️⃣ Escolher professor
             System.out.print("Digite o ID do professor: ");
             Long professorId = Long.parseLong(sc.nextLine());
 
-            // 3️⃣ Listar todas as disciplinas
             List<Disciplina> disciplinas = disciplinaDAO.getAll();
             if (disciplinas.isEmpty()) {
                 System.out.println("Não há disciplinas cadastradas.");
@@ -81,14 +78,12 @@ public class MenuCoordenador {
                 System.out.println(d.getId() + " - " + d.getNome());
             }
 
-            // 4️⃣ Escolher disciplina
             System.out.print("Digite o ID da disciplina: ");
             Long disciplinaId = Long.parseLong(sc.nextLine());
 
-            // 5️⃣ Vincular
             disciplinaDAO.linkProfessorDisciplina(professorId, disciplinaId);
 
-            System.out.println("✅ Professor vinculado à disciplina com sucesso!");
+            System.out.println("Professor vinculado à disciplina com sucesso!");
 
         } catch (PersistenciaDawException e) {
             System.out.println("Erro ao vincular professor à disciplina: " + e.getMessage());
@@ -165,9 +160,9 @@ public class MenuCoordenador {
             professor.setEmail(email);
             professor.setSenha(senha);
 
-            professorDAO.save(professor); // salva e seta o ID no objeto professor
+            professorDAO.save(professor);
 
-            System.out.println("Professor criado com sucesso! ID: " + professor.getId());
+            System.out.println("Professor criado com sucesso!");
 
         } catch (PersistenciaDawException e) {
             System.out.println("Erro ao criar professor: " + e.getMessage());
@@ -217,7 +212,7 @@ public class MenuCoordenador {
 
             alunoDAO.save(aluno);
 
-            System.out.println("Aluno criado com sucesso! ID: " + aluno.getId());
+            System.out.println("Aluno criado com sucesso!");
 
         } catch (PersistenciaDawException e) {
             System.out.println("Erro ao criar aluno: " + e.getMessage());

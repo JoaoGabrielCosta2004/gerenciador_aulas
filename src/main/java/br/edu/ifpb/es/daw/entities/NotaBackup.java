@@ -16,7 +16,7 @@ public class NotaBackup {
         this.disciplinaNome = disciplinaNome;
     }
 
-    //colocar esses métodos em uma classe de conexão separada!!!!!!
+
     public Document toDocument() {
         return new Document("nota", nota)
                 .append("alunoNome", alunoNome)
@@ -34,7 +34,6 @@ public class NotaBackup {
                 doc.getString("disciplinaNome")
         );
     }
-    //********************Até Aqui***********************************
 
     public String getNota() {
         return nota;

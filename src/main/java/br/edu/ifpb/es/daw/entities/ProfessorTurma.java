@@ -7,7 +7,7 @@ public class ProfessorTurma {
     private Long professorId;
     private Long turmaId;
 
-    // Construtores
+
     public ProfessorTurma() {}
 
     public ProfessorTurma(Long professorId, Long turmaId) {
@@ -21,7 +21,6 @@ public class ProfessorTurma {
         this.turmaId = turmaId;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

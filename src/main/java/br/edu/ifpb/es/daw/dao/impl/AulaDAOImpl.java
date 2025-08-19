@@ -14,12 +14,10 @@ import java.util.List;
 public class AulaDAOImpl implements AulaDAO {
 
     public AulaDAOImpl() {
-        // Construtor vazio, usamos Conexao.getConexao() nos métodos
+
     }
 
-    /**
-     * Insere a aula no banco e retorna o ID gerado
-     */
+
     @Override
     public Long saveAndReturnId(Aula aula) throws PersistenciaDawException {
         String sql = "INSERT INTO aula (data, conteudo, turma_id, professor_id, quantidadefalta) VALUES (?, ?, ?, ?, ?) RETURNING id";
@@ -27,7 +25,7 @@ public class AulaDAOImpl implements AulaDAO {
         try (Connection conn = Conexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setDate(1, Date.valueOf(aula.getData())); // LocalDate -> SQL Date
+            ps.setDate(1, Date.valueOf(aula.getData()));
             ps.setString(2, aula.getConteudo());
             ps.setLong(3, aula.getId_turma());
             ps.setLong(4, aula.getIdProfessor());
@@ -47,17 +45,13 @@ public class AulaDAOImpl implements AulaDAO {
         }
     }
 
-    /**
-     * Implementa o método da interface AulaDAO
-     */
+
     @Override
     public void inserir(Aula aula) throws PersistenciaDawException {
         saveAndReturnId(aula);
     }
 
-    /**
-     * Atualiza uma aula existente
-     */
+
     public void atualizar(Aula aula) throws PersistenciaDawException {
         String sql = "UPDATE aula SET data = ?, conteudo = ?, turma_id = ? WHERE id = ?";
 
@@ -79,9 +73,6 @@ public class AulaDAOImpl implements AulaDAO {
         }
     }
 
-    /**
-     * Busca uma aula pelo ID
-     */
     public Aula buscarPorId(Long id) throws PersistenciaDawException {
         String sql = "SELECT * FROM aula WHERE id = ?";
 
@@ -101,7 +92,7 @@ public class AulaDAOImpl implements AulaDAO {
                 }
             }
 
-            return null; // não encontrou
+            return null;
         } catch (SQLException e) {
             throw new PersistenciaDawException("Erro ao buscar aula por ID", e);
         }

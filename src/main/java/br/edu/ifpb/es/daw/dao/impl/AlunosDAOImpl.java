@@ -13,7 +13,7 @@ import java.util.List;
 public class AlunosDAOImpl extends AbstractDAOImpl<Aluno, Long> implements AlunoDAO {
 
     public AlunosDAOImpl() {
-        super("aluno"); // "aluno" é o nome da tabela no banco de dados
+        super("aluno");
     }
 
     @Override

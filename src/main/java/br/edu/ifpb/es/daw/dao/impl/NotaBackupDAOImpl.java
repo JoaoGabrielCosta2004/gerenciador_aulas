@@ -45,7 +45,7 @@ public class NotaBackupDAOImpl extends AbstractDAOImpl<NotaBackup, Long> impleme
         return new NotaBackup(id, valor, alunoNome, alunoMatricula, disciplinaNome);
     }
 
-    // Método específico para recuperar notas completas com dados de aluno e disciplina
+
     @Override
     public List<NotaBackup> getAll() throws PersistenciaDawException {
         String sql = "SELECT nota.id, nota.valor, aluno.nome AS aluno_nome, aluno.matricula AS aluno_matricula, " +
@@ -55,7 +55,7 @@ public class NotaBackupDAOImpl extends AbstractDAOImpl<NotaBackup, Long> impleme
                 "JOIN disciplina ON nota.disciplina_id = disciplina.id";
 
         List<NotaBackup> notas = new ArrayList<>();
-        //colocar toda a conexão em um objeto separado!!!
+
         try (PreparedStatement ps = getConnectionInstance().prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
