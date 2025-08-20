@@ -20,7 +20,7 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(nullable = false, unique = true, updatable = false)
+    @Column(nullable = false)
     private UUID lookupId;
 
     @Column(nullable = false)
@@ -31,6 +31,11 @@ public class Professor {
 
     @Column(nullable = false)
     private String senha;
+
+    @PrePersist
+    private void init() {
+        this.lookupId = UUID.randomUUID();
+    }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "disciplina_id", nullable = false)
