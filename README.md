@@ -32,7 +32,7 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
 
   ## Diagrama de Classes UML
-  ![Image](https://github.com/user-attachments/assets/6cc7173d-0873-47e3-8514-8e558ec7c166)
+  <img width="5942" height="4342" alt="Image" src="https://github.com/user-attachments/assets/2c946d28-a8ab-49af-9558-a728476a79c7" />
 
   
   ## Fluxograma
@@ -40,12 +40,12 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
 
   ## Casos de uso
-  ![Image](https://github.com/user-attachments/assets/2b12fb7e-043c-4e6b-b235-d0b0bebb8700)
+  <img width="3300" height="3458" alt="Image" src="https://github.com/user-attachments/assets/7111f2bc-c0d0-407e-bdc4-6d727a54a383" />
 
 
   ## Diagrama de atividade
-  <img width="810" height="600" alt="Image" src="https://github.com/user-attachments/assets/e1b49107-b75e-434e-a464-da3b2a977e4a" />
+  <img width="2640" height="2020" alt="Image" src="https://github.com/user-attachments/assets/32fa8e18-a158-4c30-8c27-733b6d97ce7c" />
 
 
   ## Diagrama de sequência
-  <img width="2324" height="1658" alt="Image" src="https://github.com/user-attachments/assets/b7a6f252-9908-43d0-b96c-37104c1a454d" />
+  <img width="798" height="680" alt="Image" src="https://github.com/user-attachments/assets/81df7199-1637-4e7b-9307-7a5849b4aa21" />
