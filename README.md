@@ -49,3 +49,7 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
   ## Diagrama de sequência
   <img width="798" height="680" alt="Image" src="https://github.com/user-attachments/assets/81df7199-1637-4e7b-9307-7a5849b4aa21" />
+
+
+  ## Verificação de Consistência
+  https://docs.google.com/document/d/1P7NCkSXXRjr0KBpu2BJmq7ATpN7VS9ppnj0RoEtvvf0/edit?usp=sharing
