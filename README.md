@@ -32,7 +32,7 @@ O acesso ao sistema é restrito a professores e coordenadores, garantindo que ap
 
 
   ## Diagrama de Classes UML
-  <img width="5942" height="4342" alt="Image" src="https://github.com/user-attachments/assets/2c946d28-a8ab-49af-9558-a728476a79c7" />
+  <img width="6113" height="4342" alt="Image" src="https://github.com/user-attachments/assets/a05f0fb3-7fc8-476a-a589-762bb576422a" />
 
   
   ## Fluxograma
